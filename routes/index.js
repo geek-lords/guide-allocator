@@ -40,7 +40,11 @@ router.post('/validate', (req, res) =>{
       console.log("1 record inserted");
     }); 
 
-  res.end("<h1>Your average is "+avg+" </h1>");
+  res.redirect('./form/3')
+})
+
+router.get('/frpm/:id', (req, res)=>{
+  res.render('index')
 })
 
 module.exports = router;
