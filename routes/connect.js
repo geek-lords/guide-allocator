@@ -12,7 +12,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
+exports.con = con;
 }
 
 module.exports = {connect};
-exports.con = con;
