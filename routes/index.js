@@ -39,17 +39,19 @@ router.post('/validate', (req, res) =>{
       if (err) throw err;
       console.log("1 record inserted");
     }); 
+    res.end('<h1>Your Response has been recorded.</h1>')
+   /*
     var id;
     con.query("SELECT id FROM user_info WHERE mem1=? && mem2=? && mem3=? && mem4=? && avg=?",[er_first,er_second,er_third,er_fourth,avg], function (err, result, fields) {
       if (err) throw err;
       id = resul[0].id;
     });
-
-  res.redirect('./form/'+id)
+    res.redirect('./form/'+id)
+  */
 })
-
+/*
 router.get('/form/:id', (req, res)=>{
   res.render('index', {group:req.params.id})
 })
-
+*/
 module.exports = router;
