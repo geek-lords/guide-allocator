@@ -1,4 +1,4 @@
-function connect(){
+
 var mysql = require('mysql');
 
 var db_config = {
@@ -6,11 +6,9 @@ var db_config = {
     user: "bf3fd87e41d689",
     password: "a00a933d",
     database: 'heroku_30a612b411cf238',
-    connectionLimit : 10, 
-    multipleStatements : true
   };
   
-  function handleDisconnect() {
+    function handleDisconnect() {
     con = mysql.createConnection(db_config); // Recreate the connection, since
                                                     // the old one cannot be reused.
   
@@ -30,10 +28,8 @@ var db_config = {
       }
     });
     
-  exports.con = con;
   }
   
   handleDisconnect();
-}
 
-module.exports = {connect};
+  module.exports = { handleDisconnect };

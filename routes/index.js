@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const connect = require('./connect');
-connect.connect(); // Connect to DB
-const con = connect.con; 
+const db = require('./connect');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/validate', function(req,res){
-  res.end('<h1>Invalid Request</h1>');
+  res.end('<h1>Invalid Request</h1>'); 
 })
 
 router.post('/validate', (req, res) =>{
@@ -24,12 +22,16 @@ router.post('/validate', (req, res) =>{
   const fourth = req.body.fourth; 
   const avg = (first+second+third+fourth)/400;
   console.log(first + "  "+ second)
-  var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (${er_first}, ${er_second}, ${er_third}, ${er_fourth}, ${avg})`;
-  console.log(sql);
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("1 record inserted");
-  });
+  
+  db.handleDisconnect(function(err, con) {
+    var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (${er_first}, ${er_second}, ${er_third}, ${er_fourth}, ${avg})`;
+    console.log(sql);
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+    }); 
+});
+
   res.end(first+second+third+fourth);
 })
 
