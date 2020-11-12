@@ -1,6 +1,16 @@
 var express = require('express');
 var router = express.Router();
 const db = require('./connect');
+var mysql = require('mysql');
+
+var db_config = {
+    host: "us-cdbr-east-02.cleardb.com",
+    user: "bf3fd87e41d689",
+    password: "a00a933d",
+    database: 'heroku_30a612b411cf238',
+  };
+
+const con = mysql.createConnection(db_config);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,14 +33,12 @@ router.post('/validate', (req, res) =>{
   const avg = (first+second+third+fourth)/400;
   console.log(first + "  "+ second)
   
-  db.handleDisconnect(function(err, con) {
     var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (${er_first}, ${er_second}, ${er_third}, ${er_fourth}, ${avg})`;
     console.log(sql);
     con.query(sql, function (err, result) {
       if (err) throw err;
       console.log("1 record inserted");
     }); 
-});
 
   res.end(first+second+third+fourth);
 })
