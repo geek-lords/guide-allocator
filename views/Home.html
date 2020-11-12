@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        function Focus() {
+            document.getElementById('smalltext').style.display = 'inline-block';
+        }
+
+        function Blur() {
+            document.getElementById('smalltext').style.display = 'none';
+        }
+
+        function CalculateMarks() {
+            marks1 = parseFloat(document.getElementById('marks1').value)
+            marks2 = parseFloat(document.getElementById('marks2').value)
+            marks3 = parseFloat(document.getElementById('marks3').value)
+            marks4 = parseFloat(document.getElementById('marks4').value)
+            var nonNaN = 4
+            if (Number.isNaN(marks1)) {
+                marks1 = 0
+                nonNaN--
+            }
+            if (Number.isNaN(marks2)) {
+                marks2 = 0
+                nonNaN--;
+            }
+            if (Number.isNaN(marks3)) {
+                marks3 = 0
+                nonNaN--
+            }
+            if (Number.isNaN(marks4)) {
+                marks4 = 0
+                nonNaN--
+            }
+            if (marks1 > 100 || marks1 < 0) {
+                alert("Invalid Entry !")
+                document.getElementById('marks1').value = 0
+                marks1 = 0
+            }
+            if (marks2 > 100 || marks2 < 0) {
+                alert("Invalid Entry !")
+                document.getElementById('marks2').value = 0
+                marks2 = 0
+            }
+            if (marks3 > 100 || marks3 < 0) {
+                alert("Invalid Entry !")
+                document.getElementById('marks3').value = 0
+                marks3 = 0
+            }
+            if (marks4 > 100 || marks4 < 0) {
+                alert("Invalid Entry !")
+                document.getElementById('marks4').value = 0
+                marks4 = 0
+            }
+            document.getElementById('avg').innerHTML = (marks1 + marks2 + marks3 + marks4) / nonNaN + " %"
+        }
+    </script>
+    <style>
+        * {
+            font-family: poppins;
+            outline: none;
+        }
+        
+         ::placeholder {
+            color: darkgray;
+            opacity: 1;
+        }
+        
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Apply for Guide Allocation</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body style="background-color: aliceblue;" onload="CalculateMarks()">
+    <div id="wrapper" style="width: 100%; position:relative; overflow: hidden;">
+        <div class='container' style="background : url(Left_Div.jpeg);background-repeat:no-repeat ;background-size:cover; width: 40%; float: left; overflow: hidden; border:none; border-top-right-radius: 60px;  border-bottom-right-radius: 60px;">
+            <input type="text" style="color: aliceblue;background: transparent ;width:40% ; border: 0px transparent solid; border-bottom: 4px solid whitesmoke ; margin-top: 10%; margin-left: 15%;" placeholder="Enter Your Code." onfocus="Focus();" onblur="Blur();">
+            <small id='smalltext' class="" style="display: none; margin-top: 10px; margin-left: 15%; color: white;">This Section Only be Used by Teachers.</small><br>
+            <input type="button" class="btn btn-md border border-warning" style="margin-left: 25% ;color: azure ;background-color: orange; border-radius: 25px; width: 20%; margin-top: 2%; " value="Log In">
+            <strong><p style="font-size:larger;margin-left:02%; color: aliceblue;  margin-top: 63%;">GUIDE<br>ALLOCATION</p></strong>
+            <strong><span style="font-size:large;margin-left:0%;margin-bottom: 10%;color: aliceblue; ">An Interactive Solution<br>for Allocation of Guides</span></strong>
+            <br><br><br><br><br>
+        </div>
+
+        <div class="container" style="width: 60%; float: left; overflow: hidden; background-color: aliceblue;">
+            <p style="margin-top: 10%; color: black; font-size: 34px; margin-left: 7%;">Request <span style="color: orange;">Guides</span> In few Clicks</p>
+            <form method="POST" action="/validate">
+                <input required type="number" placeholder="Enrollment Number of First Member" style="background-color: transparent;margin-top: 5%;margin-left: 10%;width:40%; border: none; border-bottom: 4px darkgray solid;">
+                <input required type="number" onchange="CalculateMarks()" id='marks1' placeholder="Average Of First Member" style="background-color: transparent;margin-left: 5%;width: 30%; border: none; border-bottom: 4px darkgray solid;" step="0.01"><br>
+                <input required type="number" placeholder="Enrollment Number of Second Member" style="background-color: transparent;margin-top: 2%;margin-left: 10%;width:40%; border: none; border-bottom: 4px darkgray solid;">
+                <input required type="number" onchange="CalculateMarks()" id='marks2' placeholder="Average Of Second Member" style="background-color: transparent;margin-left: 5%;width: 30%; border: none; border-bottom: 4px darkgray solid;" step="0.01"><br>
+                <input required type="number" placeholder="Enrollment Number of Third Member" style="background-color: transparent;margin-top: 2%;margin-left: 10%;width:40%; border: none; border-bottom: 4px darkgray solid;">
+                <input required type="number" onchange="CalculateMarks()" id='marks3' placeholder="Average Of Third Member" style="background-color: transparent;margin-left: 5%;width: 30%; border: none; border-bottom: 4px darkgray solid;" step="0.01"><br>
+                <input required type="number" placeholder="Enrollment Number of Fourth Member" style="background-color: transparent;margin-top: 2%;margin-left: 10%;width:40%; border: none; border-bottom: 4px darkgray solid;">
+                <input required type="number" onchange="CalculateMarks()" id='marks4' placeholder="Average Of Fourth Member" style="background-color: transparent;margin-left: 5%;width: 30%; border: none; border-bottom: 4px darkgray solid;" step="0.01"><br>
+                <input type="submit" class="btn btn-primary" style="margin-top: 3%; margin-left: 15%; border: none;" value="Request for a Guide">
+            </form>
+            <p style=" color: black; margin-left: 10%;margin-top: 10%;"><span style="color: #007bff;">Average  </span>Marks Of Your Group <span style="border: 1px black solid; padding: 5px; margin-left: 1%;" id="avg">00.0%</span></p>
+            <p style=" color: black; margin-left: 50%;margin-top: 15%;">Need any <span style="color: #007bff;"><a href="Help.html" style="text-decoration: none;" title="Click Here for Help about Filling the Form and Process."> Help ?</a></span></p>
+        </div>
+    </div>
+
+
+    <!--<b><h2 style="color: black; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">Request <span style="color: orange; ">Guides</span> In Few Clicks</h2></b>-->
+    <script src=" " async defer></script>
+</body>
+
+</html>
