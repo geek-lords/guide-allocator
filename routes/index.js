@@ -43,7 +43,7 @@ router.post('/validate', (req, res) =>{
   res.redirect('./form/3')
 })
 
-router.get('/frpm/:id', (req, res)=>{
+router.get('/form/:id', (req, res)=>{
   res.render('index')
 })
 
