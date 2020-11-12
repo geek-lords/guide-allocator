@@ -30,8 +30,7 @@ router.post('/validate', (req, res) =>{
   const second = req.body.second;
   const third = req.body.third; 
   const fourth = req.body.fourth; 
-  const avg = (first+second+third+fourth)/400;
-  console.log(first + "  "+ second)
+  const avg = (first+second+third+fourth)/4;
   
     var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (${er_first}, ${er_second}, ${er_third}, ${er_fourth}, ${avg})`;
     console.log(sql);
@@ -40,7 +39,7 @@ router.post('/validate', (req, res) =>{
       console.log("1 record inserted");
     }); 
 
-  res.end(first+second+third+fourth);
+  res.end("<h1>Your average is "+avg+" </h1>");
 })
 
 module.exports = router;
