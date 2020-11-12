@@ -22,8 +22,10 @@ router.post('/validate', (req, res) =>{
   const second = req.body.second;
   const third = req.body.third; 
   const fourth = req.body.fourth; 
-  const avg = (first+second+third+fourth)/4;
+  const avg = (first+second+third+fourth)/400;
+  console.log(first + "  "+ second)
   var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (${er_first}, ${er_second}, ${er_third}, ${er_fourth}, ${avg})`;
+  console.log(sql);
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("1 record inserted");

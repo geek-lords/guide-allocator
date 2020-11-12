@@ -5,7 +5,9 @@ var db_config = {
     host: "us-cdbr-east-02.cleardb.com",
     user: "bf3fd87e41d689",
     password: "a00a933d",
-    database: 'heroku_30a612b411cf238'
+    database: 'heroku_30a612b411cf238',
+    connectionLimit : 10, 
+    multipleStatements : true
   };
   
   function handleDisconnect() {
