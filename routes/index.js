@@ -35,7 +35,11 @@ router.post('/validate', (req, res) =>{
    
   con.query(sql,[er_first,er_second,er_third,er_fourth], (err,result)=>{
     if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
-    if(result.length>0) res.end('Entry(s) already exist. Please enter UNIQUE Enrollment ID.')
+    if(result.length>0) res.end(`<center>
+    <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
+    <b><a href="javascript:history.back()">Go Back</a></b>
+    </center>
+    `);
   })
 
     var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (?, ?, ?, ?, ?)`;
