@@ -35,8 +35,8 @@ router.post('/validate', (req, res) =>{
       if (err) throw err;
       console.log("1 record inserted");
     }); 
-    res.send(`<center><h1>Your response has been recorded.</h1>
-                      <p>Please wait till you are being redirected...</p></center>`)
+    //res.send(`<center><h1>Your response has been recorded.</h1>
+      //                <p>Please wait till you are being redirected...</p></center>`)
     var sql = `SELECT * FROM user_info WHERE mem1=? AND  mem2=? AND mem3=? AND mem4=? AND avg=?`;
     var id;
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
