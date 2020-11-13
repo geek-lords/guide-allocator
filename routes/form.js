@@ -12,7 +12,20 @@ var db_config = {
 const con = mysql.createConnection(db_config);
 
 router.get('/:id', (req,res)=>{
-    res.end(req.params.id);
+    const id = req.params.id;
+    var sql = `SELECT * FROM user_info WHERE id=?`;
+   
+    con.query(sql,[id], (err,result)=>{
+      if (err){ res.send('<h1>Something went wrong. Try again.</h1>'); throw err;}
+      res.end(`
+        <h3>Your Group ID: ${id}</h3>
+        <p>Member 1 : ${result[0].mem1}</p>
+        <p>Member 2 : ${result[0].mem2}</p>
+        <p>Member 3 : ${result[0].mem3}</p>
+        <p>Member 4 : ${result[0].mem4}</p>
+        <p><i>Group Average: <b>${result[0].avg}</b></i></p>
+      `)
+    })
 })
 
 module.exports = router;
