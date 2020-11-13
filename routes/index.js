@@ -37,7 +37,7 @@ router.post('/validate', (req, res) =>{
     }); 
     //res.send(`<center><h1>Your response has been recorded.</h1>
       //                <p>Please wait till you are being redirected...</p></center>`)
-    var sql = `SELECT id FROM user_info WHERE mem1=? AND  mem2=? AND mem3=? AND mem4=? AND avg=8`;
+    var sql = `SELECT id FROM user_info WHERE mem1=? AND  mem2=? AND mem3=? AND mem4=? AND avg=?`;
    
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
       if (err){ res.send('<h1>Something went wrong. Try again.</h1>'); throw err;}
