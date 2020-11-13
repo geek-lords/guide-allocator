@@ -53,7 +53,18 @@
                 document.getElementById('marks4').value = 0
                 marks4 = 0
             }
-            document.getElementById('avg').innerHTML = (marks1 + marks2 + marks3 + marks4) / nonNaN + " %"
+            var avg = (marks1 + marks2 + marks3 + marks4) / nonNaN
+            document.getElementById('avg').innerHTML = avg + " %";
+            if (avg <= 35) {
+                document.getElementById('avg').style.color = '#dc3545'
+            } else if (avg > 35 && avg < 75)
+                document.getElementById('avg').style.color = '#ffc107'
+            else if (avg >= 75 && avg < 85)
+                document.getElementById('avg').style.color = 'yellowgreen'
+            else if (avg >= 85 && avg < 100)
+                document.getElementById('avg').style.color = '#28a745'
+            else document.getElementById('avg').style.color = 'black'
+            
         }
     </script>
     <style>
