@@ -23,7 +23,7 @@ router.get('/:id', (req,res)=>{
         <p>Member 2 : ${result[0].mem2}</p>
         <p>Member 3 : ${result[0].mem3}</p>
         <p>Member 4 : ${result[0].mem4}</p>
-        <p><i>Group Average: <b>${result[0].avg}</b></i></p>
+        <p><i>Group Average: <b>${result[0].Avg}</b></i></p>
       `)
     })
 })
