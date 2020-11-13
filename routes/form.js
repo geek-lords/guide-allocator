@@ -11,24 +11,29 @@ var db_config = {
 
 const con = mysql.createConnection(db_config);
 
-router.get('/:id', (req,res)=>{
-  res.render('form')
-  /*
+router.get('/:id', (req,response)=>{
+  
     const id = req.params.id;
     var sql = `SELECT * FROM user_info WHERE id=?`;
    
     con.query(sql,[id], (err,result)=>{
-        if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
-      res.end(`
-        <h3>Your Group ID: ${id}</h3>
-        <p>Member 1 : ${result[0].mem1}</p>
-        <p>Member 2 : ${result[0].mem2}</p>
-        <p>Member 3 : ${result[0].mem3}</p>
-        <p>Member 4 : ${result[0].mem4}</p>
-        <p><i>Group Average: <b>${result[0].Avg}</b></i></p>
-      `)
+      if (err) return log("Query failed. Error: %s. Query: %s", err, query);
+    var query = `SELECT id,name FROM guide_info`;
+    con.query(query, (err, res)=>{
+      if (err) return log("Query failed. Error: %s. Query: %s", err, query);
+      
+      response.render('form',{
+        group_id: id,
+        mem1:result[0].mem1,
+        mem2:result[0].mem2,
+        mem3:result[0].mem3,
+        mem4:result[0].mem4,
+        average:result[0].Avg,
+        guide: res
+    });
+
     })
-    */
+    })  
 })
 
 module.exports = router;
