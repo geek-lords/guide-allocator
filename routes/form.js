@@ -12,6 +12,8 @@ var db_config = {
 const con = mysql.createConnection(db_config);
 
 router.get('/:id', (req,res)=>{
+  res.render('form')
+  /*
     const id = req.params.id;
     var sql = `SELECT * FROM user_info WHERE id=?`;
    
@@ -26,6 +28,7 @@ router.get('/:id', (req,res)=>{
         <p><i>Group Average: <b>${result[0].Avg}</b></i></p>
       `)
     })
+    */
 })
 
 module.exports = router;
