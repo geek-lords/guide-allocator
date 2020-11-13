@@ -16,7 +16,7 @@ router.get('/:id', (req,res)=>{
     var sql = `SELECT * FROM user_info WHERE id=?`;
    
     con.query(sql,[id], (err,result)=>{
-      if (err){ res.send('<h1>Something went wrong. Try again.</h1>'); throw err;}
+        if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
       res.end(`
         <h3>Your Group ID: ${id}</h3>
         <p>Member 1 : ${result[0].mem1}</p>

@@ -32,7 +32,7 @@ router.post('/validate', (req, res) =>{
   const avg = (first+second+third+fourth)/4;
     var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (?, ?, ?, ?, ?)`;
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg],function (err, result) {
-      if (err) throw err;
+      if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
       console.log("1 record inserted");
     }); 
     //res.send(`<center><h1>Your response has been recorded.</h1>
@@ -40,7 +40,7 @@ router.post('/validate', (req, res) =>{
     var sql = `SELECT id FROM user_info WHERE mem1=? AND  mem2=? AND mem3=? AND mem4=? AND avg=?`;
    
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
-      if (err){ res.send('<h1>Something went wrong. Try again.</h1>'); throw err;}
+      if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
       id = result[0].id;
       console.log(id);
       
