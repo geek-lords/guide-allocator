@@ -44,6 +44,33 @@
             <div class="form" style="width: 60%;  float: left; overflow: hidden;">
                 <form class="form-group" style="margin-left: 20%; width: 100%;">
 
+                    <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;">
+                        <% for(var i=0; i < guide.length; i++) { %>
+                        <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                        <% } %>
+                    </select>
+                    <select name="Choice2" class="form-control" title="Please Select Your Second Choice of Guide." style="width: 50%; margin-top: 3%;">
+                        <% for(var i=0; i < guide.length; i++) { %>
+                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                        <% } %>
+                </select>
+                    <select name="Choice3" class="form-control" title="Please Select Your Third Choice of Guide." style="width: 50%; margin-top: 3%;">
+                        <% for(var i=0; i < guide.length; i++) { %>
+                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                            <% } %>
+                </select>
+                    <select name="Choice4" class="form-control" title="Please Select Your Fourth Choice of Guide." style="width: 50%; margin-top: 3%;">
+                        <% for(var i=0; i < guide.length; i++) { %>
+                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                        <% } %>
+                </select>
+                    <select name="Choice5" class="form-control" title="Please Select Your Fifth Choice of Guide." style="width: 50%; margin-top: 3%;">
+                        <% for(var i=0; i < guide.length; i++) { %>
+                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                        <% } %>
+                </select>
+                    <button type="submit" class="btn btn-md btn-primary" style="margin-top: 5%; margin-left: 20%;">Confirm Request</button>
+
                 </form>
             </div>
             <div class="container-fluid" style="width:40%; float: left; overflow: hidden; border: 1px solid gray;">
