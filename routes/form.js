@@ -28,8 +28,8 @@ router.get('/:id', (req,response)=>{
         mem2:result[0].mem2,
         mem3:result[0].mem3,
         mem4:result[0].mem4,
-        average:result[0].Avg,
-        guide: res
+        average:result[0].Avg//,
+        //guide: res
     });
 
     })
