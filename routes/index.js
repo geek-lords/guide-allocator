@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var crypto = require('crypto');
+const NodeRSA = require('node-rsa');
+const key = new NodeRSA({b: 512});
 
 var db_config = {
     host: "us-cdbr-east-02.cleardb.com",
@@ -54,13 +55,9 @@ router.post('/validate', (req, res) =>{
    
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
       if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
-      function encrypt(text){
-        var cipher = crypto.createCipher('aes-256-cbc','d6F3Efeq')
-        var crypted = cipher.update(text,'utf8','hex')
-        crypted += cipher.final('hex');
-        return crypted;
-      }
-      const id = encrypt(toString(result[0].id))
+
+      const encrypted = key.encrypt(result[0].id, 'base64');
+      const id = encodeURIComponent(encrypted)
       console.log("encrypted: " + id);
       res.redirect('./form/'+encodeURIComponent(id));
     })

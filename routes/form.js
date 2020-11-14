@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var crypto = require('crypto');
+const NodeRSA = require('node-rsa');
+const key = new NodeRSA({b: 512});
 
 var db_config = {
     host: "us-cdbr-east-02.cleardb.com",
@@ -13,15 +15,8 @@ var db_config = {
 const con = mysql.createConnection(db_config);
 
 router.get('/:id', (req,response)=>{
-  function decrypt(text){
-    var decipher = crypto.createDecipher('aes-256-cbc','d6F3Efeq')
-    var dec = decipher.update(text,'hex','utf8')
-    dec += decipher.final('utf8');
-    return dec;
-  }
-  
-    const id = decrypt(decodeURIComponent(req.params.id));
-    console.log("decrypted: " + id);
+    var encrypted = decodeURIComponent(req.params.id);
+    const id = key.decrypt(encrypted, 'utf8');
     var sql = `SELECT * FROM user_info WHERE id=?`;
    
     con.query(sql,[id], (err,result)=>{
