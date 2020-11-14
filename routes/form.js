@@ -16,10 +16,10 @@ router.get('/:key', (req,response)=>{
   
     var sql = `SELECT * FROM user_info WHERE key='?'`;
     con.query(sql,[key], (err,result)=>{
-      if (err) return log("Query failed. Error: %s. Query: %s", err, query);
+      if (err) throw err;
     var query = `SELECT id,name FROM guide_info`;
     con.query(query, (err, res)=>{
-      if (err) return log("Query failed. Error: %s. Query: %s", err, query);
+      if (err) throw err;
       
       response.render('form',{
         group_id: result[0].id,

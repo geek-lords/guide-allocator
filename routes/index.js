@@ -36,12 +36,13 @@ router.post('/validate', (req, res) =>{
   res.end(`
   <center>
   <h2>Enrollment IDs can't be same.<h2>
+  <b><a href="javascript:history.back()">Go Back</a></b>
   </center>  `);
 
   var sql = `SELECT id FROM user_info WHERE mem1=? ||  mem2=? || mem3=? || mem4=?`;
    
   con.query(sql,[er_first,er_second,er_third,er_fourth], (err,result)=>{
-    if (err) return log("Query failed. Error: %s. Query: %s", err, query);
+    if (err) throw err;
     if(result.length>0) res.end(`<center>
     <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
     <b><a href="javascript:history.back()">Go Back</a></b>
@@ -51,7 +52,7 @@ router.post('/validate', (req, res) =>{
 
     var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (?, ?, ?, ?, ?)`;
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg],function (err, result) {
-      if (err) return log("Query failed. Error: %s. Query: %s", err, query);
+      if (err) throw err;
       console.log("1 record inserted");
     }); 
     //res.send(`<center><h1>Your response has been recorded.</h1>
@@ -59,7 +60,7 @@ router.post('/validate', (req, res) =>{
     var sql = `SELECT id FROM user_info WHERE mem1=? AND  mem2=? AND mem3=? AND mem4=? AND avg=?`;
    
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
-      if (err) return log("Query failed. Error: %s. Query: %s", err, query);
+      if (err) throw err;
 
       const id = result[0].id;
       const key = sha256(toString(id));
