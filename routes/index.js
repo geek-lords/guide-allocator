@@ -26,9 +26,10 @@ router.post('/admin', (req, res)=>{
   <b><a href="javascript:history.back()">Go Back</a></b>
   </center>`);
   console.log(code)
-  if(code=="hW42hdR2dhj73iP21F4h") 
-  res.end('<h1>Logged In</h1>')
-  else res.end(`<center><h1>Incorrect Code</h1><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`)
+  if(code=="hW42hdR2dhj73iP21F4h")
+  res.end('<h1>Logged In</h1>');
+  else
+  res.end(`<center><h1>Incorrect Code</h1><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`)
   
 })
 
