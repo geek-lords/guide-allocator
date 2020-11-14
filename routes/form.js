@@ -11,9 +11,20 @@ var db_config = {
 
 const con = mysql.createConnection(db_config);
 
+router.get('/',(req,res)=>{
+  res.redirect('../');
+})
+
 router.get('/:key', (req,response)=>{
     const key = decodeURIComponent(req.params.key);
-  
+
+    if(!key || 0 === key.length || /^\s*$/.test(key))  
+    res.end(`
+    <center>
+    <h2>Key can't be empty.<h2>
+    <b><a href="javascript:history.back()">Go Back</a></b>
+    </center>`);
+
     var sql = "SELECT * FROM user_info WHERE `key`=?";
     con.query(sql,[key], (err,result)=>{
       if (err) throw err;
