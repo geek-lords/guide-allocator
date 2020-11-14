@@ -16,7 +16,9 @@ const con = mysql.createConnection(db_config);
 
 router.get('/:id', (req,response)=>{
     var encrypted = decodeURIComponent(req.params.id);
+    console.log("decode : " + encrypted)
     const id = key.decrypt(encrypted, 'utf8');
+    console.log("final " + id)
     var sql = `SELECT * FROM user_info WHERE id=?`;
    
     con.query(sql,[id], (err,result)=>{
