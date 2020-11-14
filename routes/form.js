@@ -19,8 +19,8 @@ router.get('/:id', (req,response)=>{
     dec += decipher.final('utf8');
     return dec;
   }
-    
-    const id = decrypt(req.params.id);
+  
+    const id = decrypt(decodeURIComponent(req.params.id));
     console.log("decrypted: " + id);
     var sql = `SELECT * FROM user_info WHERE id=?`;
    

@@ -62,7 +62,7 @@ router.post('/validate', (req, res) =>{
       }
       const id = encrypt(toString(result[0].id))
       console.log("encrypted: " + id);
-      res.redirect('./form/'+id);
+      res.redirect('./form/'+encodeURIComponent(id));
     })
 })
 
