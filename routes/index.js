@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-const NodeRSA = require('node-rsa');
-const key = new NodeRSA({b: 512});
+var crypto = require('crypto');
 
 var db_config = {
     host: "us-cdbr-east-02.cleardb.com",
