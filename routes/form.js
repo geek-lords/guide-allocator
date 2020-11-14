@@ -17,6 +17,13 @@ router.get('/:key', (req,response)=>{
     var sql = "SELECT * FROM user_info WHERE `key`=?";
     con.query(sql,[key], (err,result)=>{
       if (err) throw err;
+
+    if(result[0].submit) res.end(`<center>
+    <h2>Response has already been recorded.<h2>
+    <b><a href="javascript:history.back()">Go Back</a></b>
+    </center>
+    `);
+
     var query = `SELECT id,name FROM guide_info`;
     con.query(query, (err, res)=>{
       if (err) throw err;
