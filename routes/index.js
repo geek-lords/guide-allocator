@@ -32,10 +32,16 @@ router.post('/validate', (req, res) =>{
   const fourth = parseInt(req.body.fourth); 
   const avg = (first+second+third+fourth)/4;
 
+  if(er_first==er_second||er_second==er_fourth||er_first==er_fourth) 
+  res.end(`
+  <center>
+  <h2>Enrollment IDs can't be same.<h2>
+  </center>  `);
+
   var sql = `SELECT id FROM user_info WHERE mem1=? ||  mem2=? || mem3=? || mem4=?`;
    
   con.query(sql,[er_first,er_second,er_third,er_fourth], (err,result)=>{
-    if (err){ console.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
+    if (err) return log("Query failed. Error: %s. Query: %s", err, query);
     if(result.length>0) res.end(`<center>
     <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
     <b><a href="javascript:history.back()">Go Back</a></b>
@@ -45,7 +51,7 @@ router.post('/validate', (req, res) =>{
 
     var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (?, ?, ?, ?, ?)`;
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg],function (err, result) {
-      if (err){ console.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
+      if (err) return log("Query failed. Error: %s. Query: %s", err, query);
       console.log("1 record inserted");
     }); 
     //res.send(`<center><h1>Your response has been recorded.</h1>
@@ -53,12 +59,16 @@ router.post('/validate', (req, res) =>{
     var sql = `SELECT id FROM user_info WHERE mem1=? AND  mem2=? AND mem3=? AND mem4=? AND avg=?`;
    
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
-      if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
+      if (err) return log("Query failed. Error: %s. Query: %s", err, query);
 
-      const encrypted = sha256(result[0].id);
-      const id = encodeURIComponent(encrypted)
-      console.log("encrypted: " + id);
-      res.redirect('./form/'+encodeURIComponent(id));
+      const id = result[0].id;
+      const key = encodeURIComponent(sha256(id));
+      console.log("encrypted: " + key);
+      con.query("UPDATE user_info SET key='?' WHERE id=?",[key,id],(err)=>{
+        if (err) return log("Query failed. Error: %s. Query: %s", err, query);
+
+        res.redirect('./form/'+key);
+      })
     })
 })
 
