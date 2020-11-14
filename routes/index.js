@@ -18,8 +18,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/admin', (req, res)=>{
-  const code = req.body.code;
-  if(code==null || toString(code).trim()==="")  
+  const code = toString(req.body.code);
+  if(!code || 0 === code.length || /^\s*$/.test(code))  
   res.end(`
   <center>
   <h2>Code can't be empty.<h2>
