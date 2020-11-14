@@ -23,7 +23,7 @@
 
 <body style="background-color: aliceblue;" onload="CalculateMarks()">
     <div id="wrapper" style="width: 100%; position:relative; overflow: hidden;">
-        <div class='container' style="background-image : url(/stylesheets/steve-halama-Yhc7YGZlz3g-unsplash.jpg);background-repeat:no-repeat ;background-size:cover; width: 30%; float: left; overflow: hidden; border:none; border-top-right-radius: 60px;  border-bottom-right-radius: 60px;">
+        <div class='container d-flex flex-column justify-content-between' style="height:100vh; background-image : url(/stylesheets/steve-halama-Yhc7YGZlz3g-unsplash.jpg);background-repeat:no-repeat ;background-size:cover; width: 30%; float: left; overflow: hidden; border:none; border-top-right-radius: 60px;  border-bottom-right-radius: 60px;">
             <strong><p style="color: antiquewhite;margin-top: 5%;margin-left: 3%;">Group Info(Enrollment ID)</p></strong>
             <div class="group-info" style="color: antiquewhite;margin-top: 2%; margin-left: 3%;">
                 <p>1. First Member : <%= mem1 %></p>
@@ -32,7 +32,7 @@
                 <p>4. Fourth Member : <%= mem4 %></p>
                 <strong style="font-size: larger;"><p>Average of your group is <span style="color: yellow;"><%= average %>%</span> </p></strong>
             </div>
-            <div class="normal-text" style="margin-top: 60%;">
+            <div class="normal-text">
                 <a href="javascript:history.back()"><b><p style="color: aliceblue;font-size: 30px; ">Guide <br>Allocator</p></b>               
                 <p style="color: antiquewhite; font-size: 20px;">An Interactive Solution<br>for Allocating Guides</p>
                 </a> 
