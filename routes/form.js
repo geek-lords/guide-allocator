@@ -13,7 +13,7 @@ var db_config = {
 const con = mysql.createConnection(db_config);
 
 router.get('/:id', (req,response)=>{
-  response.end('end')
+  response.end(req.params.id)
   /*
   function decrypt(text){
     var decipher = crypto.createDecipher('aes-256-cbc','d6F3Efeq')
