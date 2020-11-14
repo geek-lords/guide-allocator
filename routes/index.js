@@ -18,9 +18,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/admin', (req, res)=>{
-  res.end(req.body.code);
-  /*
-  const code = toString(req.body.code);
+  const code = (req.body.code);
   if(!code || 0 === code.length || /^\s*$/.test(code))  
   res.end(`
   <center>
@@ -31,7 +29,7 @@ router.post('/admin', (req, res)=>{
   if(code=="hW42hdR2dhj73iP21F4h") 
   res.end('<h1>Logged In</h1>')
   else res.end(`<center><h1>Incorrect Code</h1><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`)
-  */
+  
 })
 
 router.get('/validate', function(req,res){
