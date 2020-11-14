@@ -12,7 +12,7 @@ var db_config = {
 const con = mysql.createConnection(db_config);
 
 router.get('/:key', (req,response)=>{
-    const key = (req.params.key);
+    const key = decodeURIComponent(req.params.key);
   
     var sql = `SELECT * FROM user_info WHERE key='?'`;
     con.query(sql,[key], (err,result)=>{

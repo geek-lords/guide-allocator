@@ -62,12 +62,12 @@ router.post('/validate', (req, res) =>{
       if (err) return log("Query failed. Error: %s. Query: %s", err, query);
 
       const id = result[0].id;
-      const key = encodeURIComponent(sha256(id));
+      const key = sha256(id);
       console.log("encrypted: " + key);
       con.query("UPDATE user_info SET key='?' WHERE id=?",[key,id],(err)=>{
         if (err) return log("Query failed. Error: %s. Query: %s", err, query);
 
-        res.redirect('./form/'+key);
+        res.redirect('./form/'+encodeURIComponent(key));
       })
     })
 })
