@@ -65,7 +65,7 @@ router.post('/validate', (req, res) =>{
       const id = result[0].id;
       const key = sha256(toString(id));
       console.log("encrypted: " + key);
-      con.query(`UPDATE user_info SET \`key\` = "?" WHERE \`id\` = ?`,[key,id],(err)=>{
+      con.query(`UPDATE user_info SET \`key\` = ? WHERE \`id\` = ?`,[key,id],(err)=>{
         if (err) throw err;
 
         res.redirect('./form/'+encodeURIComponent(key));
