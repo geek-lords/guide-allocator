@@ -18,7 +18,7 @@ router.get('/:key', (req,response)=>{
     con.query(sql,[key], (err,result)=>{
       if (err) throw err;
     
-    if(result.length==0) res.end(`<center><h1>No such entry</h1><b><a href="javascript:history.back()">Go Back</a></b>
+    if(result.length==0) response.end(`<center><h1>No such entry</h1><b><a href="javascript:history.back()">Go Back</a></b>
     </center>`)  
 
     if(result[0].submit) response.end(`<center>
