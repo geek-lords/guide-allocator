@@ -17,6 +17,19 @@ router.get('/', function(req, res, next) {
   res.render('Home');
 });
 
+router.get('/admin', (req, res)=>{
+  const code = req.body.code;
+  if(code==null || toString(code).trim()==="")  
+  res.end(`
+  <center>
+  <h2>Code can't be empty.<h2>
+  <b><a href="javascript:history.back()">Go Back</a></b>
+  </center>`);
+
+  if(code=="hW42hdR2dhj73iP21F4h") 
+  res.end('<h1>Logged In</h1>')
+})
+
 router.get('/validate', function(req,res){
   res.end('<h1>Invalid Request</h1>'); 
 })
