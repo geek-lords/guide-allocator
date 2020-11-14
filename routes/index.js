@@ -32,6 +32,13 @@ router.post('/validate', (req, res) =>{
   const fourth = parseInt(req.body.fourth); 
   const avg = (first+second+third+fourth)/4;
 
+  if(er_first==null||er_second==null||er_third==null|| er_fourth==null||first==null||second==null||third==null||fourth==null) 
+  res.end(`
+  <center>
+  <h2>Enrollment IDs can't be empty.<h2>
+  <b><a href="javascript:history.back()">Go Back</a></b>
+  </center>  `);
+
   if(er_first==er_second||er_second==er_fourth||er_first==er_fourth) 
   res.end(`
   <center>
