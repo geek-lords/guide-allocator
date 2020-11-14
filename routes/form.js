@@ -13,15 +13,13 @@ var db_config = {
 const con = mysql.createConnection(db_config);
 
 router.get('/:id', (req,response)=>{
-  response.end(req.params.id)
-  /*
   function decrypt(text){
     var decipher = crypto.createDecipher('aes-256-cbc','d6F3Efeq')
     var dec = decipher.update(text,'hex','utf8')
     dec += decipher.final('utf8');
     return dec;
   }
-    console.log("id : " + id);
+    
     const id = decrypt(req.params.id);
     console.log("decrypted: " + id);
     var sql = `SELECT * FROM user_info WHERE id=?`;
@@ -44,7 +42,7 @@ router.get('/:id', (req,response)=>{
 
     })
     })  
-    */
+    
 })
 
 module.exports = router;
