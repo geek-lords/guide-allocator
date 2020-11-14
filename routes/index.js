@@ -56,7 +56,7 @@ router.post('/validate', (req, res) =>{
       id = result[0].id;
       console.log(id);
       
-      res.redirect('./form/'+id);
+      res.redirect('./form/'+encodeURI(id));
     })
 })
 module.exports = router;

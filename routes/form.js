@@ -13,7 +13,7 @@ const con = mysql.createConnection(db_config);
 
 router.get('/:id', (req,response)=>{
   
-    const id = req.params.id;
+    const id = decodeURI(req.params.id);
     var sql = `SELECT * FROM user_info WHERE id=?`;
    
     con.query(sql,[id], (err,result)=>{
