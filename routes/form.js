@@ -1,10 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var crypto = require('crypto');
-const NodeRSA = require('node-rsa');
-const key = new NodeRSA({b: 512});
-key.setOptions({encryptionScheme: 'pkcs1'});
 
 var db_config = {
     host: "us-cdbr-east-02.cleardb.com",
@@ -15,21 +11,18 @@ var db_config = {
 
 const con = mysql.createConnection(db_config);
 
-router.get('/:id', (req,response)=>{
-    var encrypted = decodeURIComponent(req.params.id);
-    console.log("decode : " + encrypted)
-    const id = key.decrypt(encrypted, 'utf8');
-    console.log("final " + id)
-    var sql = `SELECT * FROM user_info WHERE id=?`;
-   
-    con.query(sql,[id], (err,result)=>{
+router.get('/:key', (req,response)=>{
+    const key = decodeURIComponent(req.params.key);
+  
+    var sql = `SELECT * FROM user_info WHERE key=?`;
+    con.query(sql,[key], (err,result)=>{
       if (err) return log("Query failed. Error: %s. Query: %s", err, query);
     var query = `SELECT id,name FROM guide_info`;
     con.query(query, (err, res)=>{
       if (err) return log("Query failed. Error: %s. Query: %s", err, query);
       
       response.render('form',{
-        group_id: id,
+        group_id: result[0].id,
         mem1:result[0].mem1,
         mem2:result[0].mem2,
         mem3:result[0].mem3,
