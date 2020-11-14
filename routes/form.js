@@ -14,7 +14,7 @@ const con = mysql.createConnection(db_config);
 router.get('/:key', (req,response)=>{
     const key = decodeURIComponent(req.params.key);
   
-    var sql = `SELECT * FROM user_info WHERE key=?`;
+    var sql = "SELECT * FROM user_info WHERE `key`=?";
     con.query(sql,[key], (err,result)=>{
       if (err) throw err;
     var query = `SELECT id,name FROM guide_info`;
