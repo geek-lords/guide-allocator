@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
   res.render('Home');
 });
 
-router.get('/admin', (req, res)=>{
+router.post('/admin', (req, res)=>{
   const code = req.body.code;
   if(code==null || toString(code).trim()==="")  
   res.end(`
