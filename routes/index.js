@@ -58,17 +58,17 @@ router.post('/validate', (req, res) =>{
   })
 
     var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (?, ?, ?, ?, ?)`;
-    con.query(sql,[er_first,er_second,er_third,er_fourth,avg],function (err, result) {
+    con.query(sql,[er_first,er_second,er_third,er_fourth,avg],function (err) {
       if (err) throw err;
       console.log("1 record inserted");
     }); 
-    //res.send(`<center><h1>Your response has been recorded.</h1>
-      //                <p>Please wait till you are being redirected...</p></center>`)
+    
     var sql = `SELECT id FROM user_info WHERE mem1=? AND  mem2=? AND mem3=? AND mem4=? AND avg=?`;
-   
+    
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
       if (err) throw err;
 
+      console.log(result);
       const id = result[0].id;
       const key = sha256(toString(id));
       console.log("encrypted: " + key);
