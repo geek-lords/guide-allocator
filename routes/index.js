@@ -25,7 +25,7 @@ router.post('/admin', (req, res)=>{
   <h2>Code can't be empty.<h2>
   <b><a href="javascript:history.back()">Go Back</a></b>
   </center>`);
-
+  console.log(code)
   if(code=="hW42hdR2dhj73iP21F4h") 
   res.end('<h1>Logged In</h1>')
   else res.end(`<center><h1>Incorrect Code</h1><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`)
