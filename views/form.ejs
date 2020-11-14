@@ -42,9 +42,9 @@
         <div class="container" style="width: 70%; float: left; overflow: hidden; background-color: aliceblue;">
             <p style="margin-left: 10%;margin-top: 8%; font-size: 35px;">Select <span style="color: #007bff;">Guides</span> You Want</p>
             <p style="margin-left: 10%; margin-top: 2%;">Please Select the Names of Guides using Given Dropdown List. <label style="color:red">This is a ONE time submission.</label></p>
-            <div class="form" style="width: 60%;  float: left; overflow: hidden;">
-                <form class="form-group" style="margin-left: 20%; width: 100%;">
-
+            <div class="form d-flex flex-column" style="height:65vh; width: 60%;  float: left; overflow: hidden;">
+                <form class="form-group" style="height:max-content; margin-left: 20%; width: 100%;">
+                    <center></center>
                     <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;">
                         <option value="" selected disabled hidden>First Choice</option>
                         <% for(var i=0; i < guide.length; i++) { %>
@@ -75,8 +75,8 @@
                             <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
                         <% } %>
                 </select>
-                    <center><button type="submit" class="btn btn-md btn-primary" style="margin-top: 5%;">Confirm Selection</button></center>
-
+                    <button type="submit" class="btn btn-md btn-primary" style="margin-top: 5%;">Confirm Selection</button>
+                    </center>
                 </form>
             </div>
             <div class="container-fluid" style="width:40%; float: left; overflow: hidden; border: 1px solid gray;">
