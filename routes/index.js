@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-const sha256 = require('sha256');
+const crypto = require('crypto');
 
 var db_config = {
     host: "us-cdbr-east-02.cleardb.com",
@@ -70,7 +70,7 @@ router.post('/validate', (req, res) =>{
 
       console.log(result);
       const id = result[0].id;
-      const key = sha256(toString(id));
+      const key = crypto.randomBytes(32).toString('hex')
       console.log("encrypted: " + key);
       con.query(`UPDATE user_info SET \`key\` = ? WHERE \`id\` = ?`,[key,id],(err)=>{
         if (err) throw err;
