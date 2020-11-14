@@ -18,7 +18,7 @@ router.get('/:key', (req,response)=>{
     con.query(sql,[key], (err,result)=>{
       if (err) throw err;
 
-    if(result[0].submit) res.end(`<center>
+    if(result[0].submit) response.end(`<center>
     <h2>Response has already been recorded.<h2>
     <b><a href="javascript:history.back()">Go Back</a></b>
     </center>
