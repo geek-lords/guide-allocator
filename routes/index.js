@@ -55,8 +55,13 @@ router.post('/validate', (req, res) =>{
    
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
       if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
-
-      const id = key.encrypt(result[0].id, 'base64');
+      function encrypt(text){
+        var cipher = crypto.createCipher('aes-256-cbc','d6F3Efeq')
+        var crypted = cipher.update(text,'utf8','hex')
+        crypted += cipher.final('hex');
+        return crypted;
+      }
+      const id = encrypt(toString(result[0].id))
       res.redirect('./form/'+id);
     })
 })
