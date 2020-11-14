@@ -53,7 +53,7 @@ router.post('/validate', (req, res) =>{
    
     con.query(sql,[er_first,er_second,er_third,er_fourth,avg], (err,result)=>{
       if (err){ conosle.log(err); res.end('<h1>Something went wrong. Try again.</h1>'); }
-      id = encodeURIComponent(result[0].id);
+      id = btoa(result[0].id);
       console.log(id);
       
       res.redirect('./form/'+id);
