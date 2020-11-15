@@ -72,6 +72,7 @@ router.get('/submit/calc', (req,res)=>{
     for(var j=0; j<list.length; j++){
       console.log("List of j : " + list[j])
       console.log(guide_result[list[j]])
+      /*
       if(guide_result[list[j]].assigned < 2){
         con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
           if (err) throw err;
@@ -81,11 +82,13 @@ router.get('/submit/calc', (req,res)=>{
         })        
         break;
       }
+      */
     }
   }
-});
-});
+  
   res.send('<h1>Success</h1>')
+  });
+});
 })
 
 function calc(){
