@@ -57,4 +57,36 @@ router.get('/:key', (req,response)=>{
     
 })
 
+router.get('/calc', (req,res)=>{
+  try {
+    calc();
+  } catch (error) {
+    res.send(err);
+  }
+  res.send('<h1>Success</h1>')
+})
+
+function calc(){
+  var user_result, guide_result;
+  con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,res){
+    if(err) throw err;
+    user_result = res;
+  });
+  con.query(`SELECT * FROM guide_info`, function(err, res){
+    if(err) throw err;
+    guide_result = res;
+  });
+  for(var i=0; i<user_result.length; i++){
+    var list = user_result[i].Preferences;
+    for(var j=0; j<list.length; j++){
+      if(guide_result[list[j]-1].assigned < 2){
+        con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
+          if (err) throw err;
+          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[list[j].assigned+1,list[j]]);
+          break;
+        })        
+      }
+    }
+  }
+}
 module.exports = router;
