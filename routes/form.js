@@ -58,11 +58,6 @@ router.get('/:key', (req,response)=>{
 })
 
 router.get('/submit/calc', (req,res)=>{
-  calc()
-  res.send('<h1>Success</h1>')
-})
-
-function calc(){
   var user_result, guide_result;
   con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,res){
     if(err) throw err;
@@ -87,5 +82,10 @@ function calc(){
       }
     }
   }
+  res.send('<h1>Success</h1>')
+})
+
+function calc(){
+  
 }
 module.exports = router;
