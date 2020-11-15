@@ -69,11 +69,10 @@ router.get('/submit/calc', (req,res)=>{
   for(var i=0; i<user_result.length; i++){
     var list = user_result[i].Preferences;
     console.log(list);
-    for(var j=0; j<list.length; j++){
-      console.log("List of j : " + list[j])
-      console.log(guide_result[list[j]])
-      /*
-      if(guide_result[list[j]].assigned < 2){
+    for(var j=0; j<list.length; j++){   
+      if(list[j]!='['&&list[j]!=','&&list[j]!=']'&&guide_result[list[j]].assigned < 2){
+        console.log("List of j : " + list[j])
+        console.log(guide_result[list[j]])
         con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
           if (err) throw err;
           con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[list[j].assigned+1,list[j]],(error)=>{
@@ -82,7 +81,6 @@ router.get('/submit/calc', (req,res)=>{
         })        
         break;
       }
-      */
     }
   }
   
