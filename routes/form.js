@@ -78,6 +78,7 @@ function calc(){
   });
   for(var i=0; i<user_result.length; i++){
     var list = user_result[i].Preferences;
+    console.log(list)
     for(var j=0; j<list.length; j++){
       if(guide_result[list[j]-1].assigned < 2){
         con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
