@@ -58,40 +58,40 @@ router.get('/:key', (req,response)=>{
 })
 
 router.get('/submit/calc', (req,res)=>{
-  con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
-    if(err) throw err;
-
-  con.query(`SELECT * FROM guide_info`, function(err, guide_result){
-    if(err) throw err;
+  try {
+    con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
+      if(err) throw err;
   
-  console.log(user_result)
-  console.log(guide_result)
-  for(var i=0; i<user_result.length; i++){
-    var regex = /[\[\]\s]/g;
-    var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
-    console.log(list);
-    for(var j=0; j<list.length; j++){   
-      if(guide_result[list[j]-1].assigned < 2){
-        console.log("List of j : " + list[j])
-        console.log(guide_result[list[j]-1])
-        con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
-          if (err) throw err;
-        });
-        var assigned = guide_result[list[j]-1].assigned;
-        console.log("id:"+guide_result[list[j]-1].id+" .assigned : "+assigned);
-        assigned++;
-        console.log("id:"+guide_result[list[j]-1].id+"assigned : "+assigned);
-        con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[assigned,guide_result[list[j]-1].id],(error)=>{
-            if(err) throw error;
-        })        
-        break;
+    con.query(`SELECT * FROM guide_info`, function(err, guide_result){
+      if(err) throw err;
+    
+    for(var i=0; i<user_result.length; i++){
+      var regex = /[\[\]\s]/g;
+      var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
+      for(var j=0; j<list.length; j++){   
+        if(guide_result[list[j]-1].assigned < 2){
+          console.log("List of j : " + list[j])
+          console.log(guide_result[list[j]-1])
+          con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
+            if (err) throw err;
+          });
+          var assigned = guide_result[list[j]-1].assigned;
+          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[++assigned,guide_result[list[j]-1].id],(error)=>{
+              if(err) throw error;
+          })        
+          break;
+        }
       }
     }
-  }
-  
-  res.send('<h1>Success</h1>')
+    
+    });
   });
-});
+  
+  } catch (error) {
+    throw error;
+  }
+
+res.send('<h1>Success</h1>')
 })
 
 function calc(){
