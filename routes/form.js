@@ -61,7 +61,7 @@ router.get('/submit/calc', (req,res)=>{
   try {
     calc();
   } catch (error) {
-    res.send(err);
+    res.send(error);
   }
   res.send('<h1>Success</h1>')
 })
