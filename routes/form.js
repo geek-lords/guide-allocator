@@ -62,35 +62,31 @@ router.get('/submit/calc', (req,res)=>{
     con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
       if(err) throw err;
   
+    con.query(`SELECT * FROM guide_info`, function(err, guide_result){
+      if(err) throw err;
+    
     for(var i=0; i<user_result.length; i++){
-      con.query(`SELECT * FROM guide_info`, function(err, guide_result){
-        if(err) throw err;
-
-        console.log(user_result[i]);
-        console.log(guide_result);
       var regex = /[\[\]\s]/g;
       var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
-      
-
       for(var j=0; j<list.length; j++){   
         if(guide_result[list[j]-1].assigned < 2){
           console.log("List of j : " + list[j])
           con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
             if (err) throw err;
           });
-          var assigned = guide_result[list[j]-1].assigned;
-          assigned++;
-          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[assigned,guide_result[list[j]-1].id],(error)=>{
-              if(err) throw error;
-          });
+            //guide_result[list[j]-1].assigned++;
+            var assigned = ++guide_result[list[j]-1].assigned;
+            //assigned++;
+            con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[assigned,guide_result[list[j]-1].id],(error)=>{
+                if(err) throw error;
+            });
           console.log(guide_result[list[j]-1]) 
           break;
         }
       }
+    }
     });
-  }
-    
-});
+  });
   
   } catch (error) {
     res.status(404).send(error);
