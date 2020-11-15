@@ -58,11 +58,7 @@ router.get('/:key', (req,response)=>{
 })
 
 router.get('/submit/calc', (req,res)=>{
-  try {
-    calc();
-  } catch (error) {
-    throw error;
-  }
+  calc()
   res.send('<h1>Success</h1>')
 })
 
