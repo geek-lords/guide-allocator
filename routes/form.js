@@ -58,7 +58,7 @@ router.get('/:key', (req,response)=>{
 })
 
 router.get('/submit/calc', (req,res)=>{
-  var user_result, guide_result;
+  global.user_result;  global.guide_result;
   con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,res){
     if(err) throw err;
     user_result = res;
