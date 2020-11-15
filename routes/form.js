@@ -67,11 +67,11 @@ router.get('/submit/calc', (req,res)=>{
   console.log(user_result)
   console.log(guide_result)
   for(var i=0; i<user_result.length; i++){
-    var regex = /[.,\[\]\s]/g;
-    var list = Array.from((user_result[i].Preferences).replace(regex, ''));
+    var regex = /[\[\]\s]/g;
+    var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
     console.log(list);
     for(var j=0; j<list.length; j++){   
-      if(guide_result[list[j]].assigned < 2){
+      if(guide_result[list[j]-1].assigned < 2){
         console.log("List of j : " + list[j])
         console.log(guide_result[list[j]-1])
         con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
