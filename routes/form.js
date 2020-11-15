@@ -82,9 +82,11 @@ function calc(){
       if(guide_result[list[j]-1].assigned < 2){
         con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
           if (err) throw err;
-          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[list[j].assigned+1,list[j]]);
-          break;
+          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[list[j].assigned+1,list[j]],(error)=>{
+            if(err) throw error;
+          });
         })        
+        break;
       }
     }
   }
