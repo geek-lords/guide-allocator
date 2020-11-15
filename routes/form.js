@@ -57,7 +57,7 @@ router.get('/:key', (req,response)=>{
     
 })
 
-router.get('/calc', (req,res)=>{
+router.get('/submit/calc', (req,res)=>{
   try {
     calc();
   } catch (error) {
