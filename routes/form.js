@@ -62,12 +62,13 @@ router.get('/submit/calc', (req,res)=>{
     con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
       if(err) throw err;
   
-    con.query(`SELECT * FROM guide_info`, function(err, guide_result){
-      if(err) throw err;
-    
     for(var i=0; i<user_result.length; i++){
       var regex = /[\[\]\s]/g;
       var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
+
+      con.query(`SELECT * FROM guide_info`, function(err, guide_result){
+        if(err) throw err;
+    
       for(var j=0; j<list.length; j++){   
         if(guide_result[list[j]-1].assigned < 2){
           console.log("List of j : " + list[j])
@@ -83,10 +84,10 @@ router.get('/submit/calc', (req,res)=>{
           break;
         }
       }
-    }
-    
     });
-  });
+  }
+    
+});
   
   } catch (error) {
     res.status(404).send(error);
