@@ -58,15 +58,12 @@ router.get('/:key', (req,response)=>{
 })
 
 router.get('/submit/calc', (req,res)=>{
-  global.user_result;  global.guide_result;
-  con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,res){
+  con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
     if(err) throw err;
-    user_result = res;
-  });
-  con.query(`SELECT * FROM guide_info`, function(err, res){
+
+  con.query(`SELECT * FROM guide_info`, function(err, guide_result){
     if(err) throw err;
-    guide_result = res;
-  });
+  
   console.log(user_result)
   console.log(guide_result)
   for(var i=0; i<user_result.length; i++){
@@ -83,6 +80,8 @@ router.get('/submit/calc', (req,res)=>{
       }
     }
   }
+});
+});
   res.send('<h1>Success</h1>')
 })
 
