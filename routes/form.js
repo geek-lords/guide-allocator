@@ -63,12 +63,15 @@ router.get('/submit/calc', (req,res)=>{
       if(err) throw err;
   
     for(var i=0; i<user_result.length; i++){
-      var regex = /[\[\]\s]/g;
-      var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
-
       con.query(`SELECT * FROM guide_info`, function(err, guide_result){
         if(err) throw err;
-    
+
+      var regex = /[\[\]\s]/g;
+      var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
+      
+      console.log(user_result);
+      console.log(guide_result);
+
       for(var j=0; j<list.length; j++){   
         if(guide_result[list[j]-1].assigned < 2){
           console.log("List of j : " + list[j])
