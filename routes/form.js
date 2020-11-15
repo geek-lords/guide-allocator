@@ -71,14 +71,15 @@ router.get('/submit/calc', (req,res)=>{
       for(var j=0; j<list.length; j++){   
         if(guide_result[list[j]-1].assigned < 2){
           console.log("List of j : " + list[j])
-          console.log(guide_result[list[j]-1])
           con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
             if (err) throw err;
           });
           var assigned = guide_result[list[j]-1].assigned;
-          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[++assigned,guide_result[list[j]-1].id],(error)=>{
+          assigned++;
+          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[assigned,guide_result[list[j]-1].id],(error)=>{
               if(err) throw error;
-          })        
+          });
+          console.log(guide_result[list[j]-1]) 
           break;
         }
       }
@@ -88,10 +89,10 @@ router.get('/submit/calc', (req,res)=>{
   });
   
   } catch (error) {
-    throw error;
+    res.status(404).send(error);
   }
 
-res.send('<h1>Success</h1>')
+  res.status(200).send('Success');
 })
 
 function calc(){
