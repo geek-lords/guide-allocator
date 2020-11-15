@@ -68,7 +68,7 @@ router.get('/submit/calc', (req,res)=>{
   console.log(guide_result)
   for(var i=0; i<user_result.length; i++){
     var regex = /[.,\[\]\s]/g;
-    var list = (user_result[i].Preferences).replace(regex, '');;
+    var list = Array.from((user_result[i].Preferences).replace(regex, ''));
     console.log(list);
     for(var j=0; j<list.length; j++){   
       if(guide_result[list[j]].assigned < 2){
@@ -76,7 +76,7 @@ router.get('/submit/calc', (req,res)=>{
         console.log(guide_result[list[j]])
         con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
           if (err) throw err;
-          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[list[j].assigned+1,list[j]],(error)=>{
+          con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[guide_result[list[j]].assigned+1,list[j]],(error)=>{
             if(err) throw error;
           });
         })        
