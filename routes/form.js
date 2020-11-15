@@ -67,11 +67,10 @@ router.get('/submit/calc', (req,res)=>{
   console.log(user_result)
   console.log(guide_result)
   for(var i=0; i<user_result.length; i++){
-    var list = user_result[i].Preferences;
+    var regex = /[.,\[\]\s]/g;
+    var list = (user_result[i].Preferences).replace(regex, '');;
     console.log(list);
     for(var j=0; j<list.length; j++){   
-      if(list[j]!='['&&list[j]!=','&&list[j]!=']') continue;
-      else
       if(guide_result[list[j]].assigned < 2){
         console.log("List of j : " + list[j])
         console.log(guide_result[list[j]])
