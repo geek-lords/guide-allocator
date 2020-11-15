@@ -78,9 +78,9 @@ router.get('/submit/calc', (req,res)=>{
           if (err) throw err;
         });
         var assigned = guide_result[list[j]-1].assigned;
-        console.log("assigned : "+assigned);
+        console.log("id:"+guide_result[list[j]-1]+" .assigned : "+assigned);
         assigned++;
-        console.log("assigned : "+assigned);
+        console.log("id:"+guide_result[list[j]-1]+"assigned : "+assigned);
         con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[assigned,guide_result[list[j]-1]],(error)=>{
             if(err) throw error;
         })        
