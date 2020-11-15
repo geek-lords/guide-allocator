@@ -74,9 +74,7 @@ router.get('/submit/calc', (req,res)=>{
           con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
             if (err) throw err;
           });
-            //guide_result[list[j]-1].assigned++;
             var assigned = ++guide_result[list[j]-1].assigned;
-            //assigned++;
             con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[assigned,guide_result[list[j]-1].id],(error)=>{
                 if(err) throw error;
             });
