@@ -62,15 +62,15 @@ router.get('/submit/calc', (req,res)=>{
     con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
       if(err) throw err;
   
+      console.log(user_result);
     for(var i=0; i<user_result.length; i++){
       con.query(`SELECT * FROM guide_info`, function(err, guide_result){
         if(err) throw err;
 
+        console.log(guide_result);
       var regex = /[\[\]\s]/g;
       var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
       
-      console.log(user_result);
-      console.log(guide_result);
 
       for(var j=0; j<list.length; j++){   
         if(guide_result[list[j]-1].assigned < 2){
