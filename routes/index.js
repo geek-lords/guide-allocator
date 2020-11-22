@@ -66,7 +66,7 @@ router.post('/validate', (req, res) =>{
   <b><a href="javascript:history.back()">Go Back</a></b>
   </center>  `);
 
-  var sql = `SELECT submit,key FROM user_info WHERE mem1=? ||  mem2=? || mem3=? || mem4=?`;
+  var sql = `SELECT * FROM user_info WHERE mem1=? ||  mem2=? || mem3=? || mem4=?`;
    
   con.query(sql,[er_first,er_second,er_third,er_fourth], (err,result)=>{
     if (err) throw err;
