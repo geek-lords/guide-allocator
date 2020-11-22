@@ -8,6 +8,63 @@
             outline: none;
         }
     </style>
+    <script>
+        var Selections = ['NULL', 'NULL', 'NULL', 'NULL', 'NULL'];
+
+        function Check() {
+            var allow = true
+            if (Selections.includes("NULL")) {
+                alert("Please Select All Preferances.")
+                allow = false
+            }
+            dance:
+                for (var i = 0; i < 5; i++) {
+                    for (var j = 0; j < 5; j++) {
+                        if (i != j && Selections[i] == Selections[j]) {
+                            alert("You can't Select Same Guide for 2 Preferences.")
+                            allow = false
+                            break dance
+                        }
+                    }
+                }
+            if (allow != false) {
+                alert("Form Submit Granted! ")
+            }
+
+
+
+        }
+
+        function SelectOne() {
+            document.getElementById("one").innerHTML = ("1. " + Form.Choice1[Form.Choice1.selectedIndex].text);
+            Selections[0] = Form.Choice1[Form.Choice1.selectedIndex].text
+
+        }
+
+        function SelectTwo() {
+            document.getElementById("two").innerHTML = ("2. " + Form.Choice2[Form.Choice2.selectedIndex].text);
+            Selections[1] = Form.Choice2[Form.Choice2.selectedIndex].text
+
+        }
+
+        function SelectThree() {
+            document.getElementById("three").innerHTML = ("3. " + Form.Choice3[Form.Choice3.selectedIndex].text);
+            Selections[2] = Form.Choice3[Form.Choice3.selectedIndex].text
+
+        }
+
+        function SelectFour() {
+            document.getElementById("four").innerHTML = ("4. " + Form.Choice4[Form.Choice4.selectedIndex].text);
+            Selections[3] = Form.Choice4[Form.Choice4.selectedIndex].text
+
+        }
+
+        function SelectFive() {
+            document.getElementById("five").innerHTML = ("5. " + Form.Choice5[Form.Choice5.selectedIndex].text);
+            Selections[4] = Form.Choice5[Form.Choice5.selectedIndex].text
+
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -43,33 +100,33 @@
             <p style="margin-left: 10%;margin-top: 8%; font-size: 35px;">Select <span style="color: #007bff;">Guides</span> You Want</p>
             <p style="margin-left: 10%; margin-top: 2%;">Please Select the Names of Guides using Given Dropdown List. <label style="color:red">This is a ONE time submission.</label></p>
             <div class="form d-flex flex-column" style="height:65vh; width: 60%;  float: left; overflow: hidden;">
-                <form class="form-group" style="height:max-content; margin-left: 20%; width: 100%;">
+                <form class="form-group" style="height:max-content; margin-left: 20%; width: 100%;" name="Form">
                     <center></center>
-                    <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;">
+                    <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectOne()">
                         <option value="" selected disabled hidden>First Choice</option>
                         <% for(var i=0; i < guide.length; i++) { %>
                         <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
                         <% } %>
                     </select>
-                    <select name="Choice2" class="form-control" title="Please Select Your Second Choice of Guide." style="width: 50%; margin-top: 3%;">
+                    <select name="Choice2" class="form-control" title="Please Select Your Second Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectTwo()">
                         <option value="" selected disabled hidden>Second Choice</option>
                         <% for(var i=0; i < guide.length; i++) { %>
                             <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
                         <% } %>
                 </select>
-                    <select name="Choice3" class="form-control" title="Please Select Your Third Choice of Guide." style="width: 50%; margin-top: 3%;">
+                    <select name="Choice3" class="form-control" title="Please Select Your Third Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectThree()">
                         <option value="" selected disabled hidden>Third Choice</option>
                         <% for(var i=0; i < guide.length; i++) { %>
                             <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
                             <% } %>
                 </select>
-                    <select name="Choice4" class="form-control" title="Please Select Your Fourth Choice of Guide." style="width: 50%; margin-top: 3%;">
+                    <select name="Choice4" class="form-control" title="Please Select Your Fourth Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectFour()">
                         <option value="" selected disabled hidden>Fourth Choice</option>
                         <% for(var i=0; i < guide.length; i++) { %>
                             <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
                         <% } %>
                 </select>
-                    <select name="Choice5" class="form-control" title="Please Select Your Fifth Choice of Guide." style="width: 50%; margin-top: 3%;">
+                    <select name="Choice5" class="form-control" title="Please Select Your Fifth Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectFive()">
                         <option value="" selected disabled hidden>Fifth Choice</option>
                         <% for(var i=0; i < guide.length; i++) { %>
                             <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
@@ -82,11 +139,11 @@
             <div class="container-fluid" style="width:40%; float: left; overflow: hidden; border: 1px solid gray;">
                 <center>
                     <p style="font-size: medium; margin-top: 10%; color: #007bff;">Your Selections</p>
-                    <p style="color: black;">1. Choice 1</p>
-                    <p style="color: black;">2. Choice 2</p>
-                    <p style="color: black;">3. Choice 3</p>
-                    <p style="color: black;">4. Choice 4</p>
-                    <p style="color: black;">5. Choice 5</p>
+                    <p style="color: black;">1. Not Selected</p>
+                    <p style="color: black;">2. Not Selected</p>
+                    <p style="color: black;">3. Not Selected</p>
+                    <p style="color: black;">4. Not Selected</p>
+                    <p style="color: black;">5. Not Selected</p>
                     <p style="color:green; margin-bottom: 10%;">Confirm the Selections ONLY after thorough review</p>
 
                 </center>
