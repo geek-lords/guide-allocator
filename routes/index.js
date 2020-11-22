@@ -66,15 +66,21 @@ router.post('/validate', (req, res) =>{
   <b><a href="javascript:history.back()">Go Back</a></b>
   </center>  `);
 
-  var sql = `SELECT id FROM user_info WHERE mem1=? ||  mem2=? || mem3=? || mem4=?`;
+  var sql = `SELECT submit,key FROM user_info WHERE mem1=? ||  mem2=? || mem3=? || mem4=?`;
    
   con.query(sql,[er_first,er_second,er_third,er_fourth], (err,result)=>{
     if (err) throw err;
-    if(result.length>0) res.end(`<center>
-    <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
-    <b><a href="javascript:history.back()">Go Back</a></b>
-    </center>
-    `);
+    if(result.length>0){
+      if(!result[0].submit){
+        res.redirect('../form/'+result[0].key);
+        return;
+      }else 
+        res.end(`<center>
+        <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
+        <b><a href="javascript:history.back()">Go Back</a></b>
+        </center>
+        `);
+    }
   })
 
     var sql = `INSERT INTO user_info (mem1, mem2, mem3, mem4, avg) VALUES (?, ?, ?, ?, ?)`;
