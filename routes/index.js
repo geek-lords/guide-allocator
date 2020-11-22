@@ -73,12 +73,13 @@ router.post('/validate', (req, res) =>{
     if(result.length>0){
       if(!result[0].submit){
         return res.redirect(302,'../form/'+result[0].key);    
-      }else 
+      }else {
         res.end(`<center>
         <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
         <b><a href="javascript:history.back()">Go Back</a></b>
         </center>
         `);
+      }
     }
   })
 
