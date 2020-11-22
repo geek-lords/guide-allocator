@@ -72,8 +72,7 @@ router.post('/validate', (req, res) =>{
     if (err) throw err;
     if(result.length>0){
       if(!result[0].submit){
-        res.redirect('../form/'+result[0].key);
-        return;
+        return res.redirect(302,'../form/'+result[0].key);    
       }else 
         res.end(`<center>
         <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
