@@ -22,22 +22,47 @@
                         if (i == 0 || j == 0) {
                             document.getElementById("one").innerHTML = ("Not Selected");
                             Form.Choice1[Form.Choice1.selectedIndex].selected = false
+                            var Option = document.createElement('Option')
+                            Option.text = "Not Selected"
+                            value = ""
+                            Option.selected = true
+                            Form.Choice1.add(Option);
                         }
                         if (i == 1 || j == 1) {
                             document.getElementById("two").innerHTML = ("Not Selected");
                             Form.Choice2[Form.Choice2.selectedIndex].selected = false
+                            var Option = document.createElement('Option')
+                            Option.text = "Not Selected"
+                            value = ""
+                            Option.selected = true
+                            Form.Choice2.add(Option);
                         }
                         if (i == 2 || j == 2) {
                             document.getElementById("three").innerHTML = ("Not Selected");
                             Form.Choice3[Form.Choice3.selectedIndex].selected = false
+                            var Option = document.createElement('Option')
+                            Option.text = "Not Selected"
+                            value = ""
+                            Option.selected = true
+                            Form.Choice3.add(Option);
                         }
                         if (i == 3 || j == 3) {
                             document.getElementById("four").innerHTML = ("Not Selected");
                             Form.Choice4[Form.Choice4.selectedIndex].selected = false
+                            var Option = document.createElement('Option')
+                            Option.text = "Not Selected"
+                            value = ""
+                            Option.selected = true
+                            Form.Choice4.add(Option);
                         }
                         if (i == 4 || j == 4) {
                             document.getElementById("five").innerHTML = ("Not Selected");
                             Form.Choice5[Form.Choice5.selectedIndex].selected = false
+                            var Option = document.createElement('Option')
+                            Option.text = "Not Selected"
+                            value = ""
+                            Option.selected = true
+                            Form.Choice5.add(Option);
                         }
                         document.getElementById("myButton").disabled = true
                         alert("You can't select one guide on two preferences.")
@@ -46,7 +71,7 @@
                 }
             }
             if (flag == true) {
-                if (Selections.indexOf("NULL") == -1) {
+                if (Selections.indexOf("NULL") == -1 && Selections.indexOf("Not Selected") == -1 && Selections.indexOf("") == -1) {
                     document.getElementById("myButton").disabled = false
                 }
             }
