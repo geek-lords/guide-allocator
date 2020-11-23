@@ -45,7 +45,7 @@
             <div class="form d-flex flex-column" style="height:65vh; width: 60%;  float: left; overflow: hidden;">
                 <center>
                 <form class="form-group" style="height:max-content; margin-left: 20%; width: 100%;" name="Form">
-                    
+                    <center>
                     <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectOne()">
                         <option value="" selected disabled hidden>First Choice</option>
                         <% for(var i=0; i < guide.length; i++) { %>
@@ -76,6 +76,7 @@
                             <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
                         <% } %>
                 </select>
+                </center>
                 </form>
                 <button disabled type="button" class="btn btn-md btn-primary" style="margin-top: 5%;" id='myButton' onclick="ConfirmSelection()">Confirm Selection</button>
                 </center>
