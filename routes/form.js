@@ -58,6 +58,7 @@ router.get('/:key', (req,response)=>{
 })
 
 router.get('/submit/calc', (req,res)=>{
+  /*
   try {
     con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
       if(err) throw err;
@@ -89,7 +90,7 @@ router.get('/submit/calc', (req,res)=>{
   } catch (error) {
     res.status(404).send(error);
   }
-
+*/
   res.status(200).send('Success');
 })
 
