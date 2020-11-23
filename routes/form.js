@@ -62,10 +62,7 @@ router.post('/submit/calc', (req,res)=>{
   var req_list = JSON.stringify(req.body.list);
   var li = "";
   li = li.concat("[");
-  req_list.forEach(function(item){
-    li = li.concat(item+",");
-  });
-  li = li.substring(0, li.length - 1); 
+  li = li.concat(req_list.toString());
   li = li.concat("]");
   console.log(req_key);
   console.log(li);
