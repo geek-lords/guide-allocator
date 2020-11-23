@@ -209,7 +209,7 @@
             var lastPart = url.split("/").pop();
             $.ajax({
                 type: "POST",
-                url: "../submit/calc",
+                url: "./submit/calc",
                 data: JSON.stringify({
                     id: lastPart,
                     list: Selections
