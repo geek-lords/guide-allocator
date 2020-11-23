@@ -59,7 +59,7 @@ router.get('/:key', (req,response)=>{
 
 router.post('/submit/calc', (req,res)=>{
   console.log("\ninside\n");
-  console.log(JSON.parse(res));
+  console.log(res);
   res.json(JSON.parse(res));
   /*
   try {
@@ -95,8 +95,4 @@ router.post('/submit/calc', (req,res)=>{
   }
 */
 })
-
-function calc(){
-  
-}
 module.exports = router;
