@@ -60,7 +60,7 @@ router.get('/:key', (req,response)=>{
 router.post('/submit/calc', (req,res)=>{
   console.log("\ninside\n");
   console.log(res.body);
-  res.json(JSON.parse(res.body));
+  res.send(res.body);
   /*
   try {
     con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
