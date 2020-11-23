@@ -91,7 +91,8 @@ router.post('/submit/calc', (req,res)=>{
     res.status(404).send(error);
   }
 */
-  res.end("Success");
+  res.status(200);
+  res.redirect('.../');
 })
 
 function calc(){
