@@ -61,7 +61,7 @@ router.post('/submit/calc', (req,res)=>{
   var req_key = JSON.stringify(req.body.id);
   var req_list = JSON.stringify(req.body.list);
   console.log(req_key);
-  console.log(req_list);
+  console.log(toString(req_list));
    
   con.query("UPDATE user_info SET `Preferences`=? WHERE `key`=?",[req_list,req_key],(err)=>{
     if(err) throw err;
