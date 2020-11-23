@@ -58,7 +58,8 @@ router.get('/:key', (req,response)=>{
 })
 
 router.post('/submit/calc', (req,res)=>{
-  console.log("\ninside\n")
+  console.log("\ninside\n");
+  console.log(JSON.parse(res));
   res.json(JSON.parse(res));
   /*
   try {
