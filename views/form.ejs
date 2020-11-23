@@ -208,8 +208,8 @@
             var url = window.location.href
             var lastPart = url.split("/").pop();
             $.ajax({
-                method: "POST",
-                url: "submit/calc",
+                type: "POST",
+                url: "./submit/calc",
                 data: JSON.stringify({
                     id: lastPart,
                     list: Selections
