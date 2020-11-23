@@ -111,6 +111,22 @@
             Selections[4] = Form.Choice5[Form.Choice5.selectedIndex].value
             Check()
         }
+        function ConfirmSelection() {
+            confirm("Do you want to proceed with this list ? ")
+            var lastPart = url.split("/").pop();
+            $.ajax({
+                type: "POST",
+                url: "../submit/calc",
+                data: JSON.stringify({
+                    id: lastPart,
+                    list: Selections
+                }),
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -179,7 +195,7 @@
                             <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
                         <% } %>
                 </select>
-                    <button disabled type="submit" class="btn btn-md btn-primary" style="margin-top: 5%;" id='myButton'>Confirm Selection</button>
+                    <button disabled type="button" class="btn btn-md btn-primary" style="margin-top: 5%;" id='myButton' onclick="ConfirmSelection()">Confirm Selection</button>
                     </center>
                 </
                 form>
