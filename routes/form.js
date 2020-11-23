@@ -61,9 +61,9 @@ router.post('/submit/calc', (req,res)=>{
   var req_key = JSON.stringify(req.body.id);
   var req_list = req.body.list;
   var li = "";
-  //li = li.concat("[");
+  li = li.concat("[");
   li = li.concat(req_list.toString());
-  //li = li.concat("]");
+  li = li.concat("]");
   console.log(req_key);
   console.log(li);
   console.log("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"")
