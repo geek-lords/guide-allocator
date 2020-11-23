@@ -8,6 +8,98 @@
             outline: none;
         }
     </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Apply for Guide Allocation</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body style="background-color: aliceblue;">
+    <div id="wrapper" style="width: 100%; position:relative; overflow: hidden;">
+        <div class='container d-flex flex-column justify-content-between' style="height:100vh; background-image : url(/stylesheets/steve-halama-Yhc7YGZlz3g-unsplash.jpg);background-repeat:no-repeat ;background-size:cover; width: 30%; float: left; overflow: hidden; border:none; border-top-right-radius: 60px;  border-bottom-right-radius: 60px;">
+            <div class="group-info" style="color: antiquewhite;margin-top: 2%; margin-left: 3%;">
+                <strong><p>Group Info(Enrollment ID)</p></strong>
+                <p>1. First Member : <%= mem1 %></p>
+                <p>2. Second Member : <%= mem2 %></p>
+                <p>3. Third Member : <%= mem3 %></p>
+                <p>4. Fourth Member : <%= mem4 %></p>
+                <strong style="font-size: larger;"><p>Average of your group is <span style="color: yellow;"><%= average %>%</span> </p></strong>
+            </div>
+            <div class="normal-text">
+                <a href="javascript:history.back()"><b><p style="color: aliceblue;font-size: 30px; ">Guide <br>Allocator</p></b>               
+                <p style="color: antiquewhite; font-size: 20px;">An Interactive Solution<br>for Allocating Guides</p>
+                </a> 
+                <br>
+            </div>
+        </div>
+        <div class="container" style="width: 70%; float: left; overflow: hidden; background-color: aliceblue;">
+            <p style="margin-left: 10%;margin-top: 8%; font-size: 35px;">Select <span style="color: #007bff;">Guides</span> You Want</p>
+            <p style="margin-left: 10%; margin-top: 2%;">Please Select the Names of Guides using Given Dropdown List. <label style="color:red">This is a ONE time submission.</label></p>
+            <div class="form d-flex flex-column" style="height:65vh; width: 60%;  float: left; overflow: hidden;">
+                <form class="form-group" style="height:max-content; margin-left: 20%; width: 100%;" name="Form">
+                    <center></center>
+                    <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectOne()">
+                        <option value="" selected disabled hidden>First Choice</option>
+                        <% for(var i=0; i < guide.length; i++) { %>
+                        <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                        <% } %>
+                    </select>
+                    <select name="Choice2" class="form-control" title="Please Select Your Second Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectTwo()">
+                        <option value="" selected disabled hidden>Second Choice</option>
+                        <% for(var i=0; i < guide.length; i++) { %>
+                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                        <% } %>
+                </select>
+                    <select name="Choice3" class="form-control" title="Please Select Your Third Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectThree()">
+                        <option value="" selected disabled hidden>Third Choice</option>
+                        <% for(var i=0; i < guide.length; i++) { %>
+                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                            <% } %>
+                </select>
+                    <select name="Choice4" class="form-control" title="Please Select Your Fourth Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectFour()">
+                        <option value="" selected disabled hidden>Fourth Choice</option>
+                        <% for(var i=0; i < guide.length; i++) { %>
+                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                        <% } %>
+                </select>
+                    <select name="Choice5" class="form-control" title="Please Select Your Fifth Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectFive()">
+                        <option value="" selected disabled hidden>Fifth Choice</option>
+                        <% for(var i=0; i < guide.length; i++) { %>
+                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                        <% } %>
+                </select>
+                    <button disabled type="button" class="btn btn-md btn-primary" style="margin-top: 5%;" id='myButton' onclick="ConfirmSelection()">Confirm Selection</button>
+                    </center>
+                </
+                form>
+            </div>
+            <div class="container-fluid" style="width:40%; float: left; overflow: hidden; border: 1px solid gray;">
+                <center>
+                    <p style="font-size: medium; margin-top: 10%; color: #007bff;">Your Selections</p>
+                    <p style="color: black;" id='one'>1. Not Selected</p>
+                    <p style="color: black;" id='two'>2. Not Selected</p>
+                    <p style="color: black;" id='three'>3. Not Selected</p>
+                    <p style="color: black;" id='four'>4. Not Selected</p>
+                    <p style="color: black;" id='five'>5. Not Selected</p>
+                    <p style="color:green; margin-bottom: 10%;">Confirm the Selections ONLY after thorough review</p>
+
+                </center>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--<b><h2 style="color: black; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">Request <span style="color: orange; ">Guides</span> In Few Clicks</h2></b>-->
+    <script src=" " async defer></script>
     <script>
         var Selections = ['NULL', 'NULL', 'NULL', 'NULL', 'NULL'];
 
@@ -129,97 +221,7 @@
             });
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Apply for Guide Allocation</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-</head>
-
-<body style="background-color: aliceblue;">
-    <div id="wrapper" style="width: 100%; position:relative; overflow: hidden;">
-        <div class='container d-flex flex-column justify-content-between' style="height:100vh; background-image : url(/stylesheets/steve-halama-Yhc7YGZlz3g-unsplash.jpg);background-repeat:no-repeat ;background-size:cover; width: 30%; float: left; overflow: hidden; border:none; border-top-right-radius: 60px;  border-bottom-right-radius: 60px;">
-            <div class="group-info" style="color: antiquewhite;margin-top: 2%; margin-left: 3%;">
-                <strong><p>Group Info(Enrollment ID)</p></strong>
-                <p>1. First Member : <%= mem1 %></p>
-                <p>2. Second Member : <%= mem2 %></p>
-                <p>3. Third Member : <%= mem3 %></p>
-                <p>4. Fourth Member : <%= mem4 %></p>
-                <strong style="font-size: larger;"><p>Average of your group is <span style="color: yellow;"><%= average %>%</span> </p></strong>
-            </div>
-            <div class="normal-text">
-                <a href="javascript:history.back()"><b><p style="color: aliceblue;font-size: 30px; ">Guide <br>Allocator</p></b>               
-                <p style="color: antiquewhite; font-size: 20px;">An Interactive Solution<br>for Allocating Guides</p>
-                </a> 
-                <br>
-            </div>
-        </div>
-        <div class="container" style="width: 70%; float: left; overflow: hidden; background-color: aliceblue;">
-            <p style="margin-left: 10%;margin-top: 8%; font-size: 35px;">Select <span style="color: #007bff;">Guides</span> You Want</p>
-            <p style="margin-left: 10%; margin-top: 2%;">Please Select the Names of Guides using Given Dropdown List. <label style="color:red">This is a ONE time submission.</label></p>
-            <div class="form d-flex flex-column" style="height:65vh; width: 60%;  float: left; overflow: hidden;">
-                <form class="form-group" style="height:max-content; margin-left: 20%; width: 100%;" name="Form">
-                    <center></center>
-                    <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectOne()">
-                        <option value="" selected disabled hidden>First Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                        <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                        <% } %>
-                    </select>
-                    <select name="Choice2" class="form-control" title="Please Select Your Second Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectTwo()">
-                        <option value="" selected disabled hidden>Second Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                        <% } %>
-                </select>
-                    <select name="Choice3" class="form-control" title="Please Select Your Third Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectThree()">
-                        <option value="" selected disabled hidden>Third Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                            <% } %>
-                </select>
-                    <select name="Choice4" class="form-control" title="Please Select Your Fourth Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectFour()">
-                        <option value="" selected disabled hidden>Fourth Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                        <% } %>
-                </select>
-                    <select name="Choice5" class="form-control" title="Please Select Your Fifth Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectFive()">
-                        <option value="" selected disabled hidden>Fifth Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                        <% } %>
-                </select>
-                    <button disabled type="button" class="btn btn-md btn-primary" style="margin-top: 5%;" id='myButton' onclick="ConfirmSelection()">Confirm Selection</button>
-                    </center>
-                </
-                form>
-            </div>
-            <div class="container-fluid" style="width:40%; float: left; overflow: hidden; border: 1px solid gray;">
-                <center>
-                    <p style="font-size: medium; margin-top: 10%; color: #007bff;">Your Selections</p>
-                    <p style="color: black;" id='one'>1. Not Selected</p>
-                    <p style="color: black;" id='two'>2. Not Selected</p>
-                    <p style="color: black;" id='three'>3. Not Selected</p>
-                    <p style="color: black;" id='four'>4. Not Selected</p>
-                    <p style="color: black;" id='five'>5. Not Selected</p>
-                    <p style="color:green; margin-bottom: 10%;">Confirm the Selections ONLY after thorough review</p>
-
-                </center>
-            </div>
-        </div>
-
-    </div>
-
-
-    <!--<b><h2 style="color: black; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">Request <span style="color: orange; ">Guides</span> In Few Clicks</h2></b>-->
-    <script src=" " async defer></script>
 </body>
+
 
 </html>
