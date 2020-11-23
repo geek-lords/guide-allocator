@@ -59,7 +59,7 @@ router.get('/:key', (req,response)=>{
 
 router.post('/submit/calc', (req,res)=>{
   var req_key = JSON.stringify(req.body.id);
-  var req_list = toString(req.body.list);
+  var req_list = JSON.stringify(req.body.list);
   console.log(req_key);
   console.log(req_list);
    
