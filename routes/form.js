@@ -60,8 +60,6 @@ router.get('/:key', (req,response)=>{
 router.post('/submit/calc', (req,res)=>{
   var req_key = JSON.stringify(req.body.id);
   var req_list = JSON.stringify(req.body.list);
-  console.log(req_key);
-  console.log(toString(req_list));
   var li = "";
   li = li.concat("[");
   req_list.forEach(function(item){
@@ -69,6 +67,8 @@ router.post('/submit/calc', (req,res)=>{
   });
   li = li.substring(0, li.length - 1); 
   li = li.concat("]");
+  console.log(req_key);
+  console.log(li);
   con.query("UPDATE user_info SET `Preferences`=? WHERE `key`=?",[li,req_key],(err)=>{
     if(err) throw err;
     con.query("UPDATE user_info SET `submit`=true WHERE `key`=?",[req_key],(err)=>{
