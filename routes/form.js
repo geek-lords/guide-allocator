@@ -92,7 +92,7 @@ router.post('/submit/calc', (req,res)=>{
   }
 */
   res.status(200);
-  res.redirect('.../');
+  res.redirect('/');
 })
 
 function calc(){
