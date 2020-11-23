@@ -113,6 +113,7 @@
         }
         function ConfirmSelection() {
             confirm("Do you want to proceed with this list ? ")
+            var url = window.location.href
             var lastPart = url.split("/").pop();
             $.ajax({
                 type: "POST",
