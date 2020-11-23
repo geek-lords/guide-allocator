@@ -210,10 +210,10 @@
             $.ajax({
                 type: "POST",
                 url: "./submit/calc",
-                data: {
+                data: JSON.stringify({
                     id: lastPart,
                     list: Selections
-                },
+                }),
                 success: function(response) {
                     console.log(response);
                 }
