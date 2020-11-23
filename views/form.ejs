@@ -215,7 +215,9 @@
             $.ajax({
                 type: "POST",
                 url: "./submit/calc",
-                data: data,
+                dataType:"json",
+                contentType: "application/json",
+                data:JSON.stringify(data),
                 success: function(response) {
                     console.log(response);
                 }
