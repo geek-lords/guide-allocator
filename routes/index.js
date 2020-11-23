@@ -80,6 +80,7 @@ router.post('/validate', (req, res) =>{
         </center>
         `);
       }
+      return;
     }
   })
 
