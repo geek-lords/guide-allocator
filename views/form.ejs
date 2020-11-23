@@ -12,57 +12,76 @@
         var Selections = ['NULL', 'NULL', 'NULL', 'NULL', 'NULL'];
 
         function Check() {
-            var allow = true
-            if (Selections.includes("NULL")) {
-                alert("Please Select All Preferances.")
-                allow = false
-            }
-            dance:
-                for (var i = 0; i < 5; i++) {
-                    for (var j = 0; j < 5; j++) {
-                        if (i != j && Selections[i] == Selections[j]) {
-                            alert("You can't Select Same Guide for 2 Preferences.")
-                            allow = false
-                            break dance
+            dance: for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < 5; j++) {
+                    var flag = true
+                    if (i != j && Selections[i] != 'NULL' && Selections[i] == Selections[j]) {
+                        Selections[i] = 'NULL';
+                        Selections[j] = "NULL";
+                        flag = false
+                        if (i == 0 || j == 0) {
+                            document.getElementById("one").innerHTML = ("Not Selected");
+                            Form.Choice1[Form.Choice1.selectedIndex].selected = false
                         }
+                        if (i == 1 || j == 1) {
+                            document.getElementById("two").innerHTML = ("Not Selected");
+                            Form.Choice2[Form.Choice2.selectedIndex].selected = false
+                        }
+                        if (i == 2 || j == 2) {
+                            document.getElementById("three").innerHTML = ("Not Selected");
+                            Form.Choice3[Form.Choice3.selectedIndex].selected = false
+                        }
+                        if (i == 3 || j == 3) {
+                            document.getElementById("four").innerHTML = ("Not Selected");
+                            Form.Choice4[Form.Choice4.selectedIndex].selected = false
+                        }
+                        if (i == 4 || j == 4) {
+                            document.getElementById("five").innerHTML = ("Not Selected");
+                            Form.Choice5[Form.Choice5.selectedIndex].selected = false
+                        }
+                        document.getElementById("myButton").disabled = true
+                        alert("You can't select one guide on two preferences.")
+                        break dance
                     }
                 }
-            if (allow != false) {
-                alert("Form Submit Granted! ")
             }
-
-
+            if (flag == true) {
+                if (Selections.indexOf("NULL") == -1) {
+                    document.getElementById("myButton").disabled = false
+                }
+            }
 
         }
 
         function SelectOne() {
             document.getElementById("one").innerHTML = ("1. " + Form.Choice1[Form.Choice1.selectedIndex].text);
             Selections[0] = Form.Choice1[Form.Choice1.selectedIndex].value
-
+            Check()
         }
 
         function SelectTwo() {
             document.getElementById("two").innerHTML = ("2. " + Form.Choice2[Form.Choice2.selectedIndex].text);
             Selections[1] = Form.Choice2[Form.Choice2.selectedIndex].value
-
+            Check()
         }
 
         function SelectThree() {
             document.getElementById("three").innerHTML = ("3. " + Form.Choice3[Form.Choice3.selectedIndex].text);
             Selections[2] = Form.Choice3[Form.Choice3.selectedIndex].value
-
+            Check()
         }
 
         function SelectFour() {
             document.getElementById("four").innerHTML = ("4. " + Form.Choice4[Form.Choice4.selectedIndex].text);
             Selections[3] = Form.Choice4[Form.Choice4.selectedIndex].value
+            Check()
 
         }
 
         function SelectFive() {
             document.getElementById("five").innerHTML = ("5. " + Form.Choice5[Form.Choice5.selectedIndex].text);
             Selections[4] = Form.Choice5[Form.Choice5.selectedIndex].value
-
+            Check()
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
