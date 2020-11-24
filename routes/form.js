@@ -82,8 +82,11 @@ router.post('/submit/calc', (req,res)=>{
       });
     }else res.status(400).send("No such Group"); 
   });
- /*
+ 
   try {
+    con.query("update guide_info set `assigned`=0 where id!=0",function(err){
+      if(err) throw err;
+    })
     con.query(`SELECT * FROM user_info ORDER BY Avg DESC`, function(err,user_result){
       if(err) throw err;
   
@@ -110,11 +113,9 @@ router.post('/submit/calc', (req,res)=>{
     }
     });
   });
-  
+  res.status(200);
   } catch (error) {
     res.status(404).send(error);
   }
-*/
-res.status(200).send("Success");
 })
 module.exports = router;

@@ -221,7 +221,7 @@
                 statusCode: {
                 200: function(xhr) {
                     var ele = document.getElementsByClassName('container')[1];
-                    ele.innerHTML = `<center><h3>Your response has been recorded</h3><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`;
+                    ele.innerHTML = `<center><h3>Your response has been recorded</h3><br> <b><a href="/">Go Back</a></b></center>`;
                 },
                 500: function(xhr) {
                     alert(xhr.statusCode+": "+xhr.responseText); 
