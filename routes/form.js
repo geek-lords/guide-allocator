@@ -67,7 +67,7 @@ router.post('/submit/calc', (req,res)=>{
   console.log(req_key);
   console.log(li);
   console.log("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"")
-  con.query(`UPDATE user_info SET \`Preferences\`="?" WHERE \`key\`=?`,[li,req_key],(err)=>{
+  con.query("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"",(err)=>{
     if(err) throw err;
     con.query("UPDATE user_info SET `submit`=true WHERE `key`=?",[req_key],(err)=>{
       if(err) throw err;
