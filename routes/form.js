@@ -58,24 +58,29 @@ router.get('/:key', (req,response)=>{
 })
 
 router.post('/submit/calc', (req,res)=>{
-  var req_key = JSON.stringify(req.body.id);
-  var req_list = req.body.list;
+  var req_key = con.escape(JSON.stringify(req.body.id));
+  var req_list = con.escape(req.body.list);
   var li = "";
   li = li.concat("[");
   li = li.concat(req_list.toString());
   li = li.concat("]");
+  
   console.log(req_key);
   console.log(li);
-  //console.log("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"")
+  /*
   console.log("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"")
-  con.query("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"",(err)=>{
+  console.log("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"")
+  */
+ con.query("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"",(err,result)=>{
     if(err) throw err;
-    con.query("UPDATE user_info SET `submit`=true WHERE `key`="+req_key+"",(err,result)=>{
-      if(err) throw err;
-      if(result.affectedRows==1)
-        console.log("DB updated");
-      else res.status(400).send("No such Group");
-    });
+    if(result.affectedRows==1){
+      con.query("UPDATE user_info SET `submit`=true WHERE `key`="+req_key+"",(err,result)=>{
+        if(err) throw err;
+        if(result.affectedRows==1)
+          console.log("DB updated");
+        else res.status(400).send("Couldnt submit form");
+      });
+    }else res.status(400).send("No such Group"); 
   });
  /*
   try {
