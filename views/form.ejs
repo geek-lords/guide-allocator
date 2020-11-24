@@ -39,7 +39,7 @@
                 <br>
             </div>
         </div>
-        <div class="container" style="width: 70%; float: left; overflow: hidden; background-color: aliceblue;">
+        <div class="container" style="width: 70%; height:100vh; float: left; overflow: hidden; background-color: aliceblue;">
             <p style="margin-left: 10%;margin-top: 8%; font-size: 35px;">Select <span style="color: #007bff;">Guides</span> You Want</p>
             <p style="margin-left: 10%; margin-top: 2%;">Please Select the Names of Guides using Given Dropdown List. <label style="color:red">This is a ONE time submission.</label></p>
             <div class="form d-flex flex-column" style="height:65vh; width: 60%;  float: left; overflow: hidden;">
@@ -220,7 +220,9 @@
                 statusCode: {
                 200: function(xhr) {
                     var ele = document.getElementsByClassName('container')[1];
-                    ele.innerHTML = `<center><h3>Your response has been recorded</h3><br> <b><a href="/">Go Back</a></b></center>`;
+                    ele.innerHTML = `<div class="d-flex align-items-center">
+    <div><h3>Your response has been recorded</h3><br> <b><a href="/">Go Back</a></b></div>
+</div>`;
                 },
                 500: function(xhr) {
                     alert(xhr.statusCode+": "+xhr.responseText); 
