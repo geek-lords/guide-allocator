@@ -62,7 +62,7 @@ router.post('/submit/calc', (req,res)=>{
   var req_list = con.escape(req.body.list);
   var li = "";
   li = li.concat("[");
-  li = li.concat(req_list.toString());
+  li = li.concat(req_list);
   li = li.concat("]");
   
   console.log(req_key);
