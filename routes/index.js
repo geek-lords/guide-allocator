@@ -24,7 +24,7 @@ router.get('/:query',(req,res)=>{
 router.post('/admin', (req, res)=>{
   const code = (req.body.code);
   if(!code || 0 === code.length || /^\s*$/.test(code))  
-  res.end(`
+  res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
   <center>
   <h2>Code can't be empty.<h2>
   <b><a href="javascript:history.back()">Go Back</a></b>
@@ -33,7 +33,7 @@ router.post('/admin', (req, res)=>{
   if(code=="hW42hdR2dhj73iP21F4h")
   res.end('<h1>Logged In</h1>');
   else
-  res.end(`<center><h1>Incorrect Code</h1><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`)
+  res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /><center><h1>Incorrect Code</h1><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`)
   
 })
 
@@ -53,7 +53,7 @@ router.post('/validate', (req, res) =>{
   const avg = (first+second+third+fourth)/4;
 
   if(er_first==null||er_second==null||er_third==null|| er_fourth==null||first==null||second==null||third==null||fourth==null) 
-  res.end(`
+  res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <center>
   <h2>Enrollment IDs can't be empty.<h2>
   <b><a href="javascript:history.back()">Go Back</a></b>
@@ -74,7 +74,7 @@ router.post('/validate', (req, res) =>{
       if(!result[0].submit){
         return res.redirect(302,'../form/'+result[0].key);    
       }else {
-        res.end(`<center>
+        res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /><center>
         <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
         <b><a href="javascript:history.back()">Go Back</a></b>
         </center>

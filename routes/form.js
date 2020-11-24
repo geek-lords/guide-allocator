@@ -19,7 +19,7 @@ router.get('/:key', (req,response)=>{
     const key = decodeURIComponent(req.params.key);
 
     if(!key || 0 === key.length || /^\s*$/.test(key))  
-    res.end(`
+    res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <center>
     <h2>Key can't be empty.<h2>
     <b><a href="javascript:history.back()">Go Back</a></b>
@@ -29,10 +29,10 @@ router.get('/:key', (req,response)=>{
     con.query(sql,[key], (err,result)=>{
       if (err) throw err;
     
-    if(result.length==0) response.end(`<center><h1>No such entry</h1><b><a href="javascript:history.back()">Go Back</a></b>
+    if(result.length==0) response.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /> <center><h1>No such entry</h1><b><a href="javascript:history.back()">Go Back</a></b>
     </center>`)  
 
-    if(result[0].submit) response.end(`<center>
+    if(result[0].submit) response.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /> <center>
     <h2>Response has already been recorded.<h2>
     <b><a href="javascript:history.back()">Go Back</a></b>
     </center>
