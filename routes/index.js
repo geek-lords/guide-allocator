@@ -16,11 +16,11 @@ const con = mysql.createConnection(db_config);
 router.get('/', function(req, res, next) {
   res.render('Home');
 });
-/*
+
 router.get('/:query',(req,res)=>{
   res.redirect('/');
 })
-*/
+
 router.post('/admin', (req, res)=>{
   const code = (req.body.code);
   if(!code || 0 === code.length || /^\s*$/.test(code))  
