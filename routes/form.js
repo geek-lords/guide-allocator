@@ -59,10 +59,10 @@ router.get('/:key', (req,response)=>{
 
 router.post('/submit/calc', (req,res)=>{
   var req_key = con.escape(req.body.id);
-  var req_list = con.escape(req.body.list);
+  var req_list = (req.body.list);
   var li = "";
   li = li.concat("[");
-  li = li.concat(req_list);
+  li = li.concat(req_list.toString());
   li = li.concat("]");
   
   console.log(req_key);
