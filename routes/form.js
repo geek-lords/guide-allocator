@@ -17,9 +17,9 @@ router.get('/',(req,res)=>{
 
 router.get('/:key', (req,response)=>{
     const key = decodeURIComponent(req.params.key);
-
+    response.setHeader('Content-type','text/html');
     if(!key || 0 === key.length || /^\s*$/.test(key))  
-    res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    response.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <center>
     <h2>Key can't be empty.<h2>
     <b><a href="javascript:history.back()">Go Back</a></b>
@@ -120,6 +120,7 @@ router.post('/submit/calc', (req,res)=>{
 })
 
 router.get('*', function(req, res){
+  res.setHeader('Content-type','text/html');
   res.status(404).send('<h1>Page not found</h1>');
 });
 

@@ -23,6 +23,7 @@ router.get('/:query',(req,res)=>{
 
 router.post('/admin', (req, res)=>{
   const code = (req.body.code);
+  res.setHeader('Content-type','text/html');
   if(!code || 0 === code.length || /^\s*$/.test(code))  
   res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
   <center>
@@ -74,6 +75,7 @@ router.post('/validate', (req, res) =>{
       if(!result[0].submit){
         return res.redirect(302,'../form/'+result[0].key);    
       }else {
+        res.setHeader('Content-type','text/html');
         res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /><center>
         <h2>Entry(s) already exist(s). Please enter UNIQUE Enrollment ID.<h2>
         <b><a href="javascript:history.back()">Go Back</a></b>
