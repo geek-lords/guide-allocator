@@ -16,7 +16,7 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/:key', (req,response)=>{
-    const key = decodeURIComponent(req.params.key);
+    const key = con.escape(decodeURIComponent(req.params.key));
 
     if(!key || 0 === key.length || /^\s*$/.test(key))  
     res.end(`
