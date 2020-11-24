@@ -3,14 +3,6 @@
 
 <head>
     <script type="text/javascript">
-        function Focus() {
-            document.getElementById('smalltext').style.display = 'inline-block';
-        }
-
-        function Blur() {
-            document.getElementById('smalltext').style.display = 'none';
-        }
-
         function CalculateMarks() {
             marks1 = parseFloat(document.getElementById('marks1').value)
             marks2 = parseFloat(document.getElementById('marks2').value)
@@ -19,7 +11,7 @@
             var nonNaN = 4
             if (Number.isNaN(marks1)) {
                 marks1 = 0
-                nonNaN--
+                nonNaN--;
             }
             if (Number.isNaN(marks2)) {
                 marks2 = 0
@@ -64,7 +56,7 @@
             else if (avg >= 85 && avg < 100)
                 document.getElementById('avg').style.color = '#28a745'
             else document.getElementById('avg').style.color = 'black'
-            
+
         }
     </script>
     <style>
@@ -98,39 +90,56 @@
 </head>
 
 <body style="background-color: aliceblue;" onload="CalculateMarks()">
-    <div id="wrapper" style="width: 100%; position:relative; overflow: hidden;">
-        <div class='container' style="background : url(/stylesheets/Left_Div.jpeg);background-repeat:no-repeat ;background-size:cover; width: 40%; float: left; overflow: hidden; border:none; border-top-right-radius: 60px;  border-bottom-right-radius: 60px;">
-            <form method="POST" action="/admin">
-                <input name="code" required type="text" style="color: aliceblue;background: transparent ;width:40% ; border: 0px transparent solid; border-bottom: 4px solid whitesmoke ; margin-top: 10%; margin-left: 15%;" placeholder="Enter Your Code." onfocus="Focus();" onblur="Blur();">
-                <small id='smalltext' class="" style="display: none; margin-top: 10px; margin-left: 15%; color: white;">This Section Only be Used by Teachers.</small><br>
-                <input type="submit" class="btn btn-md border border-warning" style="margin-left: 25% ;color: azure ;background-color: orange; border-radius: 25px; width: 20%; margin-top: 2%; " value="Log In">
-            </form>
-            <strong><p style="font-size:larger;margin-left:02%; color: aliceblue;  margin-top: 63%;">GUIDE<br>ALLOCATION</p></strong>
-            <strong><span style="font-size:large;margin-left:0%;margin-bottom: 10%;color: aliceblue; ">An Interactive Solution<br>for Allocation of Guides</span></strong>
-            <br><br><br><br><br>
-        </div>
 
-        <div class="container" style="width: 60%; float: left; overflow: hidden; background-color: aliceblue;">
-            <p style="margin-top: 10%; color: black; font-size: 34px; margin-left: 7%;">Request <span style="color: orange;">Guides</span> In few Clicks</p>
-            <form method="POST" action="/validate">
-                <input required type="number" name="er_first"placeholder="Enrollment Number of First Member" style="background-color: transparent;margin-top: 5%;margin-left: 10%;width:40%; border: none; border-bottom: 4px darkgray solid;">
-                <input required type="number" name="first" onkeyup="CalculateMarks()" onchange="CalculateMarks()" id='marks1' placeholder="Average Of First Member" style="background-color: transparent;margin-left: 5%;width: 30%; border: none; border-bottom: 4px darkgray solid;" step="0.01"><br>
-                <input required type="number" name="er_second"placeholder="Enrollment Number of Second Member" style="background-color: transparent;margin-top: 2%;margin-left: 10%;width:40%; border: none; border-bottom: 4px darkgray solid;">
-                <input required type="number" name="second" onkeyup="CalculateMarks()" onchange="CalculateMarks()" id='marks2' placeholder="Average Of Second Member" style="background-color: transparent;margin-left: 5%;width: 30%; border: none; border-bottom: 4px darkgray solid;" step="0.01"><br>
-                <input required type="number" name="er_third"placeholder="Enrollment Number of Third Member" style="background-color: transparent;margin-top: 2%;margin-left: 10%;width:40%; border: none; border-bottom: 4px darkgray solid;">
-                <input required type="number" name="third" onkeyup="CalculateMarks()" onchange="CalculateMarks()" id='marks3' placeholder="Average Of Third Member" style="background-color: transparent;margin-left: 5%;width: 30%; border: none; border-bottom: 4px darkgray solid;" step="0.01"><br>
-                <input required type="number" name="er_fourth"placeholder="Enrollment Number of Fourth Member" style="background-color: transparent;margin-top: 2%;margin-left: 10%;width:40%; border: none; border-bottom: 4px darkgray solid;">
-                <input required type="number" name="fourth" onkeyup="CalculateMarks()" onchange="CalculateMarks()" id='marks4' placeholder="Average Of Fourth Member" style="background-color: transparent;margin-left: 5%;width: 30%; border: none; border-bottom: 4px darkgray solid;" step="0.01"><br>
-                <input type="submit" class="btn btn-primary" style="margin-top: 3%; margin-left: 15%; border: none;" value="Request for a Guide">
-            </form>
-            <p style=" color: black; margin-left: 10%;margin-top: 10%;"><span style="color: #007bff;">Average  </span>Marks Of Your Group <span style="border: 1px black solid; padding: 5px; margin-left: 1%;" id="avg">00.0%</span></p>
-            <p style=" color: black; margin-left: 50%;margin-top: 15%;">Need any <span style="color: #007bff;"><a href="Help.html" style="text-decoration: none;" title="Click Here for Help about Filling the Form and Process."> Help ?</a></span></p>
+    <div class="wrapper" style="width: 100%;">
+        <!--Represents whole screen-->
+        <div class="row float-left col-md-4 col-sm-12 pt-3" style="overflow: hidden; background : url(/Left_Div.jpeg);background-repeat:no-repeat ;background-size:cover; height: 100%;">
+            <!--Represents Side Screen-->
+            <div class="col-md-12 col-12 mt-3">
+                <!--Represents Teachers Form-->
+                <center>
+                    <form method="POST" action="/admin" style="margin-bottom: 75%;">
+                        <strong><p class="col-auto col-lg-12 col-sm-12" style=" color: aliceblue; font-size:larger; margin-left: -4%;">For Teachers.</p></strong>
+                        <input required name='code' type="name" class='p-2 bg-transparent' style="color: white; border: 0px transparent solid; border-bottom: 4px solid whitesmoke ;" title="Only be used if Code is provided by College." placeholder="Enter Your Teacher Code Here.">
+                        <center><button type="button" class="btn btn-warning border-warning col-sm-6 mt-3 ml-2 " style="color: #212529;">Login</button></center>
+                        <center><button type="button" class="btn btn-primary border-primary col-sm-6 mt-4 ml-2" style="color: aliceblue;">Registration for Students</button></center>
+                    </form>
+                </center>
+                <p><strong class="col-lg-12 " style="font-size: x-large; color: antiquewhite;">GUIDE ALLOCATOR</strong></p>
+                <strong class="col-lg-12 " style="font-size:large; color: antiquewhite;  margin-left: 0%;">An Interactive Solution<br><span style="margin-left: 4%;">for Allocation of Guides.</span></strong>
+                <br><br><br><br>
+            </div>
+        </div>
+        <div class="row float-left col-md-8 col-sm-12 pt-2 ml-md-2" style="height: 200%; overflow: hidden; display: flex;">
+            <div class="col-12 pt-5">
+                <center>
+                    <p style="font-size: xx-large;">Request <span style="color: gold;">Guides</span> in few clicks.</p>
+                </center>
+            </div>
+            <div class="col-12 pt-3">
+                <center>
+                    <form method="POST" action="/validate" style="margin-bottom: 5%;">
+                        <input required name="er_first" class="col-md-5 col-sm-10 bg-transparent float-left ml-md-4 mt-3" type="number" style="border: none; border-bottom: 4px solid darkgrey;" placeholder="Enrollment Number of First Member">
+                        <input required name='first' class="col-md-5 col-sm-10 bg-transparent float-left ml-md-4 mt-3" type="number" style="border: none; border-bottom: 4px solid darkgrey;" placeholder="Average Of First Member" step="0.01" id="marks1" onchange="CalculateMarks()"
+                            onkeyup="CalculateMarks()">
+                        <input required name="er_second" class="col-md-5 col-sm-10 bg-transparent float-left ml-md-4 mt-3" type="number" style="border: none; border-bottom: 4px solid darkgrey;" placeholder="Enrollment Number of Second Member">
+                        <input required name='second' class="col-md-5 col-sm-10 bg-transparent float-left ml-md-4 mt-3" type="number" style="border: none; border-bottom: 4px solid darkgrey;" placeholder="Average Of Second Member" step="0.01" id="marks2" onchange="CalculateMarks()"
+                            onkeyup="CalculateMarks()">
+                        <input required name="er_third" class="col-md-5 col-sm-10 bg-transparent float-left ml-md-4 mt-3" type="number" style="border: none; border-bottom: 4px solid darkgrey;" placeholder="Enrollment Number of Third Member">
+                        <input required name='third' class="col-md-5 col-sm-10 bg-transparent float-left ml-md-4 mt-3" type="number" style="border: none; border-bottom: 4px solid darkgrey;" placeholder="Average Of Third Member" step="0.01" id="marks3" onchange="CalculateMarks()"
+                            onkeyup="CalculateMarks()">
+                        <input required name="er_fourth" class="col-md-5 col-sm-10 bg-transparent float-left ml-md-4 mt-3" type="number" style="border: none; border-bottom: 4px solid darkgrey;" placeholder="Enrollment Number of Four Member">
+                        <input required name='fourth' class="col-md-5 col-sm-10 bg-transparent float-left ml-md-4 mt-3" type="number" style="border: none; border-bottom: 4px solid darkgrey;" placeholder="Average Of Four Member" step="0.01" id="marks4" onchange="CalculateMarks()"
+                            onkeyup="CalculateMarks()">
+                        <button type="submit" class="col-md-3 col-sm-12 btn btn-primary mt-3">Request for Guide.</button>
+                        <p class=""></p><span style="color: #007BFF;">Average</span> of your group is <span style="border: 1px solid black;" class="p-1" id='avg'>00%</span></p>
+                        <p>Need any <span style="color: #007BFF;"><a href="/Help.html">help?</a></span></p>
+                        <br><br><br><br><br>
+                    </form>
+                </center>
+            </div>
         </div>
     </div>
-
-
-    <!--<b><h2 style="color: black; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">Request <span style="color: orange; ">Guides</span> In Few Clicks</h2></b>-->
-    <script src=" " async defer></script>
 </body>
 
 </html>
