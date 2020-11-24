@@ -97,7 +97,9 @@ router.post('/submit/calc', (req,res)=>{
       var regex = /[\[\]\s]/g;
       var list = ((user_result[i].Preferences).replace(regex, '')).split`,`.map(x=>+x);
       for(var j=0; j<list.length; j++){   
+        var flag = false;
         if(guide_result[list[j]-1].assigned < 2){
+          flag = true;
           console.log("List of j : " + list[j])
           con.query("UPDATE user_info SET `Assigned`=? WHERE id=?",[list[j],user_result[i].id],(err)=>{
             if (err) throw err;
@@ -106,9 +108,9 @@ router.post('/submit/calc', (req,res)=>{
             con.query("UPDATE guide_info SET `assigned`=? WHERE id=?",[assigned,guide_result[list[j]-1].id],(error)=>{
                 if(err) throw error;
             });
-          console.log(guide_result[list[j]-1]) 
-          break;
+          console.log(guide_result[list[j]-1])
         }
+        if(flag==true) break;
       }
     }
     });
