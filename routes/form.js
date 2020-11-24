@@ -58,7 +58,7 @@ router.get('/:key', (req,response)=>{
 })
 
 router.post('/submit/calc', (req,res)=>{
-  var req_key = con.escape(JSON.stringify(req.body.id));
+  var req_key = con.escape(req.body.id);
   var req_list = con.escape(req.body.list);
   var li = "";
   li = li.concat("[");
