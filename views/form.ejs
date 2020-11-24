@@ -44,7 +44,7 @@
             <p style="margin-left: 10%; margin-top: 2%;">Please Select the Names of Guides using Given Dropdown List. <label style="color:red">This is a ONE time submission.</label></p>
             <div class="form d-flex flex-column" style="height:65vh; width: 60%;  float: left; overflow: hidden;">
                 <form method="POST" class="form-group" style="height:max-content; margin-left: 20%; width: 100%;" name="Form">
-                    <center></center>
+                    <center>
                     <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectOne()">
                         <option value="" selected disabled hidden>First Choice</option>
                         <% for(var i=0; i < guide.length; i++) { %>
@@ -220,7 +220,8 @@
                 data:JSON.stringify(data),
                 statusCode: {
                 200: function(xhr) {
-                    window.location.href = "./success";
+                    var ele = document.getElementsByClassName('form')[0];
+                    ele.innerHTML = `<center><h3>Your response has been recorded</h3><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`;
                 },
                 500: function(xhr) {
                     alert(xhr.statusCode+": "+xhr.responseText); 
