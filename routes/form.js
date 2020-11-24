@@ -67,12 +67,14 @@ router.post('/submit/calc', (req,res)=>{
   console.log(req_key);
   console.log(li);
   //console.log("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"")
-  console.log(`"UPDATE user_info SET Preferences=\"?\" WHERE key=?",[li,req_key]`)
-  con.query("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`=?",[req_key],(err)=>{
+  console.log("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"")
+  con.query("UPDATE user_info SET `Preferences`=\""+li+"\" WHERE `key`="+req_key+"",(err)=>{
     if(err) throw err;
-    con.query("UPDATE user_info SET `submit`=1 WHERE `key`=?",[req_key],(err)=>{
+    con.query("UPDATE user_info SET `submit`=true WHERE `key`="+req_key+"",(err,result)=>{
       if(err) throw err;
-      console.log("submit updated");
+      if(result.affectedRows==1)
+        console.log("DB updated");
+      else res.status(400).send("No such Group");
     });
   });
  /*
