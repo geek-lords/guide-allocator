@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         * {
@@ -7,7 +8,7 @@
             outline: none;
         }
     </style>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -22,79 +23,105 @@
 </head>
 
 <body style="background-color: aliceblue;">
-    <div id="wrapper" style="width: 100%; position:relative; overflow: hidden;">
-        <div class='container d-flex flex-column justify-content-between' style="height:100vh; background-image : url(/stylesheets/steve-halama-Yhc7YGZlz3g-unsplash.jpg);background-repeat:no-repeat ;background-size:cover; width: 30%; float: left; overflow: hidden; border:none; border-top-right-radius: 60px;  border-bottom-right-radius: 60px;">
-            <div class="group-info" style="color: antiquewhite;margin-top: 2%; margin-left: 3%;">
-                <strong><p>Group Info(Enrollment ID)</p></strong>
-                <p>1. First Member : <%= mem1 %></p>
-                <p>2. Second Member : <%= mem2 %></p>
-                <p>3. Third Member : <%= mem3 %></p>
-                <p>4. Fourth Member : <%= mem4 %></p>
-                <strong style="font-size: larger;"><p>Average of your group is <span style="color: yellow;"><%= average %>%</span> </p></strong>
-            </div>
-            <div class="normal-text">
-                <a href="javascript:history.back()"><b><p style="color: aliceblue;font-size: 30px; ">Guide <br>Allocator</p></b>               
+    <div class="wrapper d-flex flex-column flex-wrap col-12" style="position:relative; overflow: hidden;">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class='container d-flex flex-column justify-content-around' style="height:100vh; background-image : url(/steve-halama-Yhc7YGZlz3g-unsplash.jpg);background-repeat:no-repeat ;background-size:cover; float: left; overflow: hidden; ">
+                    <div class="group-info" style="color: antiquewhite;margin-top: 2%; margin-left: 3%;">
+                        <strong><p>Group Info(Enrollment ID)</p></strong>
+                        <p>1. First Member :
+                            <%= mem1 %>
+                        </p>
+                        <p>2. Second Member :
+                            <%= mem2 %>
+                        </p>
+                        <p>3. Third Member :
+                            <%= mem3 %>
+                        </p>
+                        <p>4. Fourth Member :
+                            <%= mem4 %>
+                        </p>
+                        <strong style="font-size: larger;"><p>Average of your group is <span style="color: yellow;"><%= average %>%</span> </p></strong>
+                        <center><button type="button" class="d-block d-sm-none btn btn-primary border-primary col-sm-6 mt-4 ml-2" style="color: aliceblue;"><a href="#stu" style="text-decoration: none; color: aliceblue;">Select Your Guides.</a></button></center>
+                    </div>
+
+                    <div class="normal-text">
+                        <a href="javascript:history.back()"><b><p style="color: aliceblue;font-size: 30px; ">Guide <br>Allocator</p></b>               
                 <p style="color: antiquewhite; font-size: 20px;">An Interactive Solution<br>for Allocating Guides</p>
-                </a> 
-                <br>
+                </a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <!--Done till here-->
+            <div class="col-md-8 col-sm-12 d-flex justify-content-around">
+                <div class="row">
+                    <div class="" id="stu">
+                        <p style="margin-top: 8%; font-size: 35px;">Select <span style="color: #007bff;">Guides</span> You Want</p>
+                        <p style="margin-top: 0%;">Please Select the Names of Guides using Given Dropdown List. <label style="color:red">This is a ONE time submission.</label></p>
+                    </div>
+                    <div class="col-md-7 col-sm-12">
+                        <div class="container-fluid" style="float: left; overflow: hidden; background-color: aliceblue;">
+                            <div class="form" style="height:50vh; float: left; overflow: hidden;">
+                                <form method="POST" class="form-group d-flex flex-column justify-content-center" style="height:max-content;" name="Form">
+                                    <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style=" margin-top: 5%;" onchange="SelectOne()">
+                                <option value="" selected disabled hidden>First Choice</option>
+                                <% for(var i=0; i < guide.length; i++) { %>
+                                <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                                <% } %>
+                            </select>
+                                    <select name="Choice2" class="form-control" title="Please Select Your Second Choice of Guide." style="margin-top: 5%;" onchange="SelectTwo()">
+                                <option value="" selected disabled hidden>Second Choice</option>
+                                <% for(var i=0; i < guide.length; i++) { %>
+                                    <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                                <% } %>
+                            </select>
+                                    <select name="Choice5" class="form-control" title="Please Select Your Third Choice of Guide." style="margin-top: 5%;" onchange="SelectThree()">
+                                <option value="" selected disabled hidden>Third Choice</option>
+                                <% for(var i=0; i < guide.length; i++) { %>
+                                <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                                <% } %>
+                            </select>
+                                    <select name="Choice4" class="form-control" title="Please Select Your Fourth Choice of Guide." style="margin-top: 5%;" onchange="SelectFour()">
+                                <option value="" selected disabled hidden>Fourth Choice</option>
+                                <% for(var i=0; i < guide.length; i++) { %>
+                                    <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                                <% } %>
+                            </select>
+                                    <select name="Choice5" class="form-control" title="Please Select Your Fifth Choice of Guide." style="margin-top: 5%;" onchange="SelectFive()">
+                                <option value="" selected disabled hidden>Fifth Choice</option>
+                                <% for(var i=0; i < guide.length; i++) { %>
+                                    <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
+                                <% } %>
+                            </select>
+                                </form>
+
+                                <center>
+                                    <button disabled type="button" class="btn btn-md btn-primary" style="margin-top: 5%;" id='myButton' onclick="ConfirmSelection()">Confirm Selection</button>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-5" style="height: 75vh;">
+                        <div class="container-fluid" style="overflow: hidden; border: 1px solid gray;;">
+                            <center>
+                                <p style="font-size: medium; margin-top: 10%; color: #007bff;">Your Selections</p>
+                                <p style="color: black;" id='one'>1. Not Selected</p>
+                                <p style="color: black;" id='two'>2. Not Selected</p>
+                                <p style="color: black;" id='three'>3. Not Selected</p>
+                                <p style="color: black;" id='four'>4. Not Selected</p>
+                                <p style="color: black;" id='five'>5. Not Selected</p>
+                                <p style="color:green; margin-bottom: 10%;">Confirm the Selections ONLY after thorough review</p>
+                            </center>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="container" style="width: 70%; height:100vh; float: left; overflow: hidden; background-color: aliceblue;">
-            <p style="margin-left: 10%;margin-top: 8%; font-size: 35px;">Select <span style="color: #007bff;">Guides</span> You Want</p>
-            <p style="margin-left: 10%; margin-top: 2%;">Please Select the Names of Guides using Given Dropdown List. <label style="color:red">This is a ONE time submission.</label></p>
-            <div class="form d-flex flex-column" style="height:65vh; width: 60%;  float: left; overflow: hidden;">
-                <form method="POST" class="form-group" style="height:max-content; margin-left: 20%; width: 100%;" name="Form">
-                    
-                    <select name="Choice1" class="form-control" title="Please Select Your First Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectOne()">
-                        <option value="" selected disabled hidden>First Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                        <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                        <% } %>
-                    </select>
-                    <select name="Choice2" class="form-control" title="Please Select Your Second Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectTwo()">
-                        <option value="" selected disabled hidden>Second Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                        <% } %>
-                </select>
-                    <select name="Choice3" class="form-control" title="Please Select Your Third Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectThree()">
-                        <option value="" selected disabled hidden>Third Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                            <% } %>
-                </select>
-                    <select name="Choice4" class="form-control" title="Please Select Your Fourth Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectFour()">
-                        <option value="" selected disabled hidden>Fourth Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                        <% } %>
-                </select>
-                    <select name="Choice5" class="form-control" title="Please Select Your Fifth Choice of Guide." style="width: 50%; margin-top: 3%;" onchange="SelectFive()">
-                        <option value="" selected disabled hidden>Fifth Choice</option>
-                        <% for(var i=0; i < guide.length; i++) { %>
-                            <option value="<%= guide[i].id %>"><%= guide[i].name %></option>
-                        <% } %>
-                </select>
-                </form>
-                <center>
-                <button disabled type="button" class="btn btn-md btn-primary" style="margin-top: 5%;" id='myButton' onclick="ConfirmSelection()">Confirm Selection</button>
-                </center>
-            </div>
-            <div class="container-fluid" style="width:40%; float: left; overflow: hidden; border: 1px solid gray;">
-                <center>
-                    <p style="font-size: medium; margin-top: 10%; color: #007bff;">Your Selections</p>
-                    <p style="color: black;" id='one'>1. Not Selected</p>
-                    <p style="color: black;" id='two'>2. Not Selected</p>
-                    <p style="color: black;" id='three'>3. Not Selected</p>
-                    <p style="color: black;" id='four'>4. Not Selected</p>
-                    <p style="color: black;" id='five'>5. Not Selected</p>
-                    <p style="color:green; margin-bottom: 10%;">Confirm the Selections ONLY after thorough review</p>
-
-                </center>
-            </div>
-        </div>
-
     </div>
+
+
+
 
 
     <!--<b><h2 style="color: black; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">Request <span style="color: orange; ">Guides</span> In Few Clicks</h2></b>-->
@@ -164,8 +191,7 @@
             if (flag == true) {
                 if (Selections.indexOf("NULL") == -1 && Selections.indexOf("Not Selected") == -1 && Selections.indexOf("") == -1) {
                     document.getElementById("myButton").disabled = false
-                }
-                else {
+                } else {
                     document.getElementById("myButton").disabled = true
                 }
             }
@@ -202,36 +228,37 @@
             Selections[4] = Form.Choice5[Form.Choice5.selectedIndex].value
             Check()
         }
+
         function ConfirmSelection() {
             confirm("Do you want to proceed with this list ? ")
             var url = window.location.href
             var lastPart = url.split("/").pop();
             var data = {
-                    id: lastPart,
-                    list: Selections
-                };
-            console.log("data : "+ data.id +" "+ data.list)
+                id: lastPart,
+                list: Selections
+            };
+            console.log("data : " + data.id + " " + data.list)
             $.ajax({
                 type: "POST",
                 url: "./submit/calc",
-                dataType:"json",
+                dataType: "json",
                 contentType: "application/json",
-                data:JSON.stringify(data),
+                data: JSON.stringify(data),
                 statusCode: {
-                200: function(xhr) {
-                    var ele = document.getElementsByClassName('container')[1];
-                    ele.innerHTML = `<div class="h-100 d-flex justify-content-center align-items-center">
+                    200: function(xhr) {
+                        var ele = document.getElementsByClassName('container')[1];
+                        ele.innerHTML = `<div class="h-100 d-flex justify-content-center align-items-center">
     <div> <center> <h3>Your response has been recorded</h3><br> <b><a href="/">Go Back</a></b></center></div>
 </div>`;
-                },
-                500: function(xhr) {
-                    alert(xhr.statusCode+": "+xhr.responseText); 
-                    window.location.href = window.history.back();
-                },
-                400:  function(xhr) {
-                    alert(xhr.statusCode+": "+xhr.responseText); 
-                    window.location.href = window.history.back();
-                }
+                    },
+                    500: function(xhr) {
+                        alert(xhr.statusCode + ": " + xhr.responseText);
+                        window.location.href = window.history.back();
+                    },
+                    400: function(xhr) {
+                        alert(xhr.statusCode + ": " + xhr.responseText);
+                        window.location.href = window.history.back();
+                    }
                 }
             });
         }
