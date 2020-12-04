@@ -17,6 +17,13 @@ router.get('/', function(req, res, next) {
   res.render('Home');
 });
 
+router.get('/help',function(req, res){
+  res.end(`Contact the following if you have any problems:<br>
+          Abhiraj Kale : abhirajkale1806@gmail.com<br>
+          Sarvesh Joshi : sarveshjoshi25@gmail.com<br>
+          Rohan Yadav : yrohan740@gmail.com`);
+})
+
 router.get('/:query',(req,res)=>{
   res.redirect('/');
 })
