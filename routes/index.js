@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 router.get('/help',function(req, res){
   res.end(`<center>Contact the following if you have any problems: <br>
   Abhiraj Kale : abhirajkale1806@gmail.com <br>
-  Sarvesh Joshi : sarveshjoshi25@gmail.com <br>
+  Sarvesh Joshi : mynameissarveshjoshi@gmail.com <br>
   Rohan Yadav : yrohan740@gmail.com</center>`);
 })
 
