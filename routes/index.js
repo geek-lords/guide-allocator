@@ -74,9 +74,9 @@ router.post('/validate', (req, res) =>{
   <b><a href="javascript:history.back()">Go Back</a></b>
   </center>  `);
 
-  var sql = `SELECT * FROM user_info WHERE mem1=? ||  mem2=? || mem3=? || mem4=?`;
+  var sql = `SELECT * FROM user_info WHERE mem1=? ||  mem1=? || mem1=? || mem1=? || mem2=? ||  mem2=? || mem2=? || mem2=? || mem3=? || mem3=? || mem3=? || mem3=? || mem4=? || mem4=? || mem4=? || mem4=?`;
    
-  con.query(sql,[er_first,er_second,er_third,er_fourth], (err,result)=>{
+  con.query(sql,[er_first,er_second,er_third,er_fourth,er_first,er_second,er_third,er_fourth,er_first,er_second,er_third,er_fourth,er_first,er_second,er_third,er_fourth], (err,result)=>{
     if (err) throw err;
     if(result.length>0){
       if(!result[0].submit){
