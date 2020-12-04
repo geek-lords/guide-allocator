@@ -54,7 +54,7 @@
                 </div>
             </div>
             <!--Done till here-->
-            <div class="col-md-8 col-sm-12 d-flex justify-content-around">
+            <div id="print-response" class="col-md-8 col-sm-12 d-flex justify-content-around">
                 <div class="row">
                     <div class="" id="stu">
                         <p style="margin-top: 8%; font-size: 35px;">Select <span style="color: #007bff;">Guides</span> You Want</p>
@@ -246,7 +246,7 @@
                 data: JSON.stringify(data),
                 statusCode: {
                     200: function(xhr) {
-                        var ele = document.getElementsByClassName('container')[1];
+                        var ele = document.getElementById('print-response');
                         ele.innerHTML = `<div class="h-100 d-flex justify-content-center align-items-center">
     <div> <center> <h3>Your response has been recorded</h3><br> <b><a href="/">Go Back</a></b></center></div>
 </div>`;
