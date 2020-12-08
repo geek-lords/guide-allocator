@@ -62,7 +62,22 @@
                                 Allocated Guide
                             </th>
                         </tr>
-                       
+                        <% for(var i=0; i < user.length; i++) { %>
+                            <tr>
+                                <td>
+                                <%= i+1 %>
+                                </td>
+                                <td>
+                                <%= user[i].mem1 %> <br>
+                                <%= user[i].mem2 %> <br>
+                                <%= user[i].mem3 %> <br>
+                                <%= user[i].mem4 %> <br>
+                                </td>
+                                <td>
+                                <%= guide[user[i].Preference - 1].name %>
+                                </td>
+                            </tr>
+                        <% } %>
                     </table>
 
                 </center>

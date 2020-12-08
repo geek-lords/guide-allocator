@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 const crypto = require('crypto');
+const { table } = require('console');
 
 var db_config = {
     host: "us-cdbr-east-02.cleardb.com",
@@ -38,8 +39,36 @@ router.post('/admin', (req, res)=>{
   <b><a href="javascript:history.back()">Go Back</a></b>
   </center>`);
   console.log(code)
-  if(code=="admin")
-  res.render('table.ejs');
+  if(code=="admin"){
+    // Get the user list
+    con.query("SELECT * FROM user_info",(err,user_info)=>{
+      if (err) throw err;
+      if(user_info.length>=0){
+        res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+        <center>
+        <h2>Error 202<h2>
+        <b><a href="/">Go Back</a></b>
+        </center>`);
+      }
+      // Get the guide list
+      con.query("SELECT * FROM guide_info",(err, guide_info)=>{
+        if (err) throw err;
+        if(guide_info.length>=0){
+          res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+          <center>
+          <h2>Error 202<h2>
+          <b><a href="/">Go Back</a></b>
+          </center>`);
+        }
+        // Render the List page with the user and guide values obtained from DB
+        res.render('table.ejs',{
+          user : user_info,
+          guide : guide_info
+        })
+      })
+    })
+    //res.render('table.ejs');
+  }
   else
   res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /><center><h1>Incorrect Code</h1><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`)
   
