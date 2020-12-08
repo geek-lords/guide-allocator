@@ -67,7 +67,7 @@ router.post('/admin', (req, res)=>{
         })
       })
     })
-    //res.render('table.ejs');
+    process.exit(0);
   }
   else
   res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /><center><h1>Incorrect Code</h1><br> <b><a href="javascript:history.back()">Go Back</a></b></center>`)
@@ -144,5 +144,7 @@ router.post('/validate', (req, res) =>{
       })
     }
   })
-})
+  process.exit(0);
+});
+
 module.exports = router;
