@@ -230,7 +230,10 @@
         }
 
         function ConfirmSelection() {
-            confirm("Do you want to proceed with this list ? ")
+            var confirm = confirm("Do you want to proceed with this list ? ")
+            if(confirm==false){
+                window.location.replace(window.location.href);
+            }
             var url = window.location.href
             var lastPart = url.split("/").pop();
             var data = {
