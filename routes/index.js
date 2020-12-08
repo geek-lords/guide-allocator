@@ -43,7 +43,7 @@ router.post('/admin', (req, res)=>{
     // Get the user list
     con.query("SELECT * FROM user_info",(err,user_info)=>{
       if (err) throw err;
-      if(user_info.length>=0){
+      if(user_info.length==0){
         res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
         <center>
         <h2>Error 202<h2>
@@ -53,7 +53,7 @@ router.post('/admin', (req, res)=>{
       // Get the guide list
       con.query("SELECT * FROM guide_info",(err, guide_info)=>{
         if (err) throw err;
-        if(guide_info.length>=0){
+        if(guide_info.length==0){
           res.end(`<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
           <center>
           <h2>Error 202<h2>
